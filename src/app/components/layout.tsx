@@ -50,20 +50,6 @@ export default function ComponentsLayout({ children }: ComponentsLayoutProps) {
           </Link>
         </div>
         <div className={styles.headerRight}>
-          <nav className={styles.mainNav}>
-            <Link href="/" className={styles.mainNavLink}>
-              Home
-            </Link>
-            <Link href="/components/button" className={`${styles.mainNavLink} ${styles.mainNavLinkActive}`}>
-              Components
-            </Link>
-            <Link href="/branding" className={styles.mainNavLink}>
-              Branding
-            </Link>
-            <Link href="/tokens/colors" className={styles.mainNavLink}>
-              Tokens
-            </Link>
-          </nav>
           <Button variant="secondary" onClick={toggleTheme} size="small">
             {theme === 'light' ? '🌙' : '☀️'}
           </Button>
@@ -74,6 +60,35 @@ export default function ComponentsLayout({ children }: ComponentsLayoutProps) {
 
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
         <nav className={styles.nav}>
+          <div className={styles.navSection}>
+            <div className={styles.navGroup}>Branding</div>
+            <Link
+              href="/branding"
+              className={`${styles.navItem} ${isActive('/branding') ? styles.navItemActive : ''}`}
+              onClick={() => setSidebarOpen(false)}
+            >
+              Overview
+            </Link>
+          </div>
+
+          <div className={styles.navSection}>
+            <div className={styles.navGroup}>Design Tokens</div>
+            <Link
+              href="/tokens/colors"
+              className={`${styles.navItem} ${isActive('/tokens/colors') ? styles.navItemActive : ''}`}
+              onClick={() => setSidebarOpen(false)}
+            >
+              Colors
+            </Link>
+            <Link
+              href="/tokens/typography"
+              className={`${styles.navItem} ${isActive('/tokens/typography') ? styles.navItemActive : ''}`}
+              onClick={() => setSidebarOpen(false)}
+            >
+              Typography
+            </Link>
+          </div>
+
           <div className={styles.navSection}>
             <div className={styles.navGroup}>Components</div>
             <Link
@@ -126,6 +141,13 @@ export default function ComponentsLayout({ children }: ComponentsLayoutProps) {
               Checkbox
             </Link>
             <Link
+              href="/components/footer"
+              className={`${styles.navItem} ${isActive('/components/footer') ? styles.navItemActive : ''}`}
+              onClick={() => setSidebarOpen(false)}
+            >
+              Footer
+            </Link>
+            <Link
               href="/components/icons"
               className={`${styles.navItem} ${isActive('/components/icons') ? styles.navItemActive : ''}`}
               onClick={() => setSidebarOpen(false)}
@@ -140,18 +162,18 @@ export default function ComponentsLayout({ children }: ComponentsLayoutProps) {
               Input
             </Link>
             <Link
-              href="/components/radio"
-              className={`${styles.navItem} ${isActive('/components/radio') ? styles.navItemActive : ''}`}
-              onClick={() => setSidebarOpen(false)}
-            >
-              Radio
-            </Link>
-            <Link
               href="/components/progress"
               className={`${styles.navItem} ${isActive('/components/progress') ? styles.navItemActive : ''}`}
               onClick={() => setSidebarOpen(false)}
             >
               Progress
+            </Link>
+            <Link
+              href="/components/radio"
+              className={`${styles.navItem} ${isActive('/components/radio') ? styles.navItemActive : ''}`}
+              onClick={() => setSidebarOpen(false)}
+            >
+              Radio
             </Link>
             <Link
               href="/components/tabs"
@@ -167,12 +189,16 @@ export default function ComponentsLayout({ children }: ComponentsLayoutProps) {
             >
               Tag
             </Link>
+          </div>
+
+          <div className={styles.navSection}>
+            <div className={styles.navGroup}>Features</div>
             <Link
-              href="/components/footer"
-              className={`${styles.navItem} ${isActive('/components/footer') ? styles.navItemActive : ''}`}
+              href="/components/exercise-option"
+              className={`${styles.navItem} ${isActive('/components/exercise-option') ? styles.navItemActive : ''}`}
               onClick={() => setSidebarOpen(false)}
             >
-              Footer
+              ExerciseOption
             </Link>
             <Link
               href="/components/lesson-header"
@@ -180,13 +206,6 @@ export default function ComponentsLayout({ children }: ComponentsLayoutProps) {
               onClick={() => setSidebarOpen(false)}
             >
               LessonHeader
-            </Link>
-            <Link
-              href="/components/exercise-option"
-              className={`${styles.navItem} ${isActive('/components/exercise-option') ? styles.navItemActive : ''}`}
-              onClick={() => setSidebarOpen(false)}
-            >
-              ExerciseOption
             </Link>
           </div>
         </nav>

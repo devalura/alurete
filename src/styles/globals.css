@@ -1,4 +1,13 @@
+@import 'tailwindcss';
 @import './tokens.css';
+
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-family-sans);
+  --font-serif: var(--font-family-serif);
+  --font-mono: var(--font-family-mono);
+  --font-display: var(--font-family-display);
+}
 
 * {
   box-sizing: border-box;

@@ -51,7 +51,7 @@
 }
 
 .avatar:not(:has(.image)) {
-  background-color: #e3f2fd;
+  background-color: var(--color-blue-100);
 }
 
 .size24 .initials {

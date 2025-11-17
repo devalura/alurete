@@ -18,34 +18,36 @@ const getInitials = (name: string): string => {
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ({ size = '40', src, alt, name = '', className, ...props }, ref) => {
     const initials = !src && name ? getInitials(name) : '';
-
+    
     const sizeClasses = {
-      '24': 'w-6 h-6',
-      '32': 'w-8 h-8',
-      '40': 'w-10 h-10',
-      '110': 'w-[110px] h-[110px]'
+      '24': 'w-6 h-6 text-xs leading-4 tracking-normal',
+      '32': 'w-8 h-8 text-sm leading-[18px] tracking-normal',
+      '40': 'w-10 h-10 text-base leading-5 tracking-normal',
+      '110': 'w-[110px] h-[110px] text-5xl leading-[60px] tracking-[-0.02em]',
     };
-
-    const initialsSizeClasses = {
-      '24': 'text-xs leading-4',
-      '32': 'text-sm leading-[18px]',
-      '40': 'text-base leading-5',
-      '110': 'text-[40px] leading-[44px]'
-    };
+    
+    const baseClasses = 'relative flex items-center justify-center rounded-full overflow-hidden font-[var(--font-family-display)] font-bold';
+    const bgClass = !src ? 'bg-[var(--color-blue-100)]' : '';
 
     return (
       <div
         ref={ref}
-        className={`relative inline-flex items-center justify-center rounded-full border-[0.5px] border-[var(--color-border-default)] overflow-hidden flex-shrink-0 ${sizeClasses[size]} ${!src ? 'bg-[#e3f2fd]' : ''} ${className || ''}`}
+        className={`${baseClasses} ${sizeClasses[size]} ${bgClass} ${className || ''}`}
         {...props}
       >
         {src ? (
-          <img src={src} alt={alt || name} className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none" />
+          <img 
+            src={src} 
+            alt={alt || name} 
+            className="w-full h-full object-cover"
+          />
         ) : (
-          <span className={`font-sans font-medium text-[var(--color-brand-default)] text-center ${initialsSizeClasses[size]}`}>{initials}</span>
+          <span className="flex items-center justify-center w-full h-full text-[var(--color-brand-default)]">
+            {initials}
+          </span>
         )}
         {size === '110' && src && (
-          <div className="absolute inset-[-0.5px] shadow-[inset_0_0_10px_7px_rgba(1,12,83,0.4)] pointer-events-none rounded-full" />
+          <div className="absolute inset-[-0.5px] rounded-full shadow-[0_0_16px_8px_rgba(0,0,0,0.3)] pointer-events-none" />
         )}
       </div>
     );

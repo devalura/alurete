@@ -56,30 +56,30 @@
 
 /* Attention variant - Yellow */
 .attention {
-  background-color: #fef9c3;
-  color: #854d0e;
+  background-color: var(--color-yellow-100);
+  color: var(--color-yellow-700);
 }
 
 .attention .icon {
-  color: #854d0e;
+  color: var(--color-yellow-700);
 }
 
 /* Error variant - Red */
 .error {
-  background-color: #fecaca;
-  color: #991b1b;
+  background-color: var(--color-red-200);
+  color: var(--color-red-800);
 }
 
 .error .icon {
-  color: #991b1b;
+  color: var(--color-red-800);
 }
 
 /* Success variant - Green */
 .success {
-  background-color: #d1fae5;
-  color: #065f46;
+  background-color: var(--color-emerald-200);
+  color: var(--color-emerald-800);
 }
 
 .success .icon {
-  color: #065f46;
+  color: var(--color-emerald-800);
 }

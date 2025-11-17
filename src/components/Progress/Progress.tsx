@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './Progress.module.css';
 
 export interface ProgressProps {
   /**
@@ -43,13 +42,13 @@ export const Progress: React.FC<ProgressProps> = ({
 }) => {
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
   
-  const containerClasses = [
-    styles.container,
-    styles[size],
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const containerClasses = `flex items-center gap-2.5 ${className || ''}`;
+  
+  const trackClasses = size === 'small' 
+    ? 'relative bg-[var(--color-indigo-100)] rounded-full overflow-hidden flex-1 h-2 max-w-[158px]'
+    : 'relative bg-[var(--color-indigo-100)] rounded-full overflow-hidden flex-1 h-2';
+  
+  const fillClasses = 'h-full bg-[var(--color-green-400)] rounded-full transition-[width] duration-300 ease-in-out';
 
   const getLabel = () => {
     if (!showLabel) return null;
@@ -63,9 +62,9 @@ export const Progress: React.FC<ProgressProps> = ({
 
   return (
     <div className={containerClasses}>
-      <div className={styles.track}>
+      <div className={trackClasses}>
         <div 
-          className={styles.fill}
+          className={fillClasses}
           style={{ width: `${percentage}%` }}
           role="progressbar"
           aria-valuenow={value}
@@ -74,7 +73,9 @@ export const Progress: React.FC<ProgressProps> = ({
         />
       </div>
       {showLabel && (
-        <span className={styles.label}>{getLabel()}</span>
+        <span className="font-[var(--font-family-brand)] text-sm font-normal text-[var(--color-text-body)] leading-[1.1] whitespace-nowrap flex-shrink-0">
+          {getLabel()}
+        </span>
       )}
     </div>
   );

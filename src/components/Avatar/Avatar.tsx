@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react';
-import styles from './Avatar.module.css';
 
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: '24' | '32' | '40' | '110';
@@ -20,18 +19,34 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ({ size = '40', src, alt, name = '', className, ...props }, ref) => {
     const initials = !src && name ? getInitials(name) : '';
 
+    const sizeClasses = {
+      '24': 'w-6 h-6',
+      '32': 'w-8 h-8',
+      '40': 'w-10 h-10',
+      '110': 'w-[110px] h-[110px]'
+    };
+
+    const initialsSizeClasses = {
+      '24': 'text-xs leading-4',
+      '32': 'text-sm leading-[18px]',
+      '40': 'text-base leading-5',
+      '110': 'text-[40px] leading-[44px]'
+    };
+
     return (
       <div
         ref={ref}
-        className={`${styles.avatar} ${styles[`size${size}`]} ${className || ''}`}
+        className={`relative inline-flex items-center justify-center rounded-full border-[0.5px] border-[var(--color-border-default)] overflow-hidden flex-shrink-0 ${sizeClasses[size]} ${!src ? 'bg-[#e3f2fd]' : ''} ${className || ''}`}
         {...props}
       >
         {src ? (
-          <img src={src} alt={alt || name} className={styles.image} />
+          <img src={src} alt={alt || name} className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none" />
         ) : (
-          <span className={styles.initials}>{initials}</span>
+          <span className={`font-sans font-medium text-[var(--color-brand-default)] text-center ${initialsSizeClasses[size]}`}>{initials}</span>
         )}
-        {size === '110' && src && <div className={styles.shadow} />}
+        {size === '110' && src && (
+          <div className="absolute inset-[-0.5px] shadow-[inset_0_0_10px_7px_rgba(1,12,83,0.4)] pointer-events-none rounded-full" />
+        )}
       </div>
     );
   }

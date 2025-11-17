@@ -45,11 +45,11 @@
   /* Spacing - usando variáveis CSS dos tokens */
   --spacing-0: 0px;
   --spacing-px: 1px;
-  --spacing-0\.5: var(--spacing-0-5);
+  --spacing-0.5: var(--spacing-0-5);
   --spacing-1: var(--spacing-1);
-  --spacing-1\.5: var(--spacing-1-5);
+  --spacing-1.5: var(--spacing-1-5);
   --spacing-2: var(--spacing-2);
-  --spacing-2\.5: var(--spacing-2-5);
+  --spacing-2.5: var(--spacing-2-5);
   --spacing-3: var(--spacing-3);
   --spacing-4: var(--spacing-4);
   --spacing-5: var(--spacing-5);
@@ -117,6 +117,17 @@ body {
   font-family: var(--font-family-sans);
   background-color: var(--color-surface-default);
   color: var(--color-text-body);
+}
+
+/* Layout com sidebar */
+body > div {
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  body > div {
+    margin-left: 0 !important;
+  }
 }
 
 a {

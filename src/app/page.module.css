@@ -2,6 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
 }
 
 /* ========================================
@@ -30,7 +31,7 @@
 }
 
 .mainNav {
-  display: flex;
+  display: none; /* Removido pois agora temos sidebar */
   gap: var(--spacing-2);
 }
 

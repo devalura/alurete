@@ -15,22 +15,14 @@ export const Tag: React.FC<TagProps> = ({
   className,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center gap-1 px-2 py-1 rounded-md font-sans text-xs font-medium leading-4';
+  const baseClasses = 'inline-flex items-center gap-[4px] px-[8px] py-[2px] rounded-[var(--radius-pill,9999px)] font-[family-name:var(--font-family-brand)] text-[12px] font-semibold leading-normal text-nowrap';
   
   const variantClasses = {
-    primary: 'bg-[var(--color-brand-light)] text-[var(--color-brand-default)]',
-    secondary: 'bg-[var(--color-surface-subtle)] text-[var(--color-text-body)]',
-    attention: 'bg-[var(--color-yellow-100)] text-[var(--color-yellow-700)]',
-    error: 'bg-[var(--color-red-200)] text-[var(--color-red-800)]',
-    success: 'bg-[var(--color-emerald-200)] text-[var(--color-emerald-800)]',
-  };
-  
-  const iconClasses = {
-    primary: 'text-[var(--color-brand-default)]',
-    secondary: 'text-[var(--color-text-body)]',
-    attention: 'text-[var(--color-yellow-700)]',
-    error: 'text-[var(--color-red-800)]',
-    success: 'text-[var(--color-emerald-800)]',
+    primary: 'bg-[var(--color-surface-brand,#dbeafe)] text-[var(--color-brand-default,#1d4ed8)]',
+    secondary: 'bg-[var(--color-surface-secondary,#eef2ff)] text-[var(--color-text-title,#334155)]',
+    attention: 'bg-[var(--color-feedback-attention-surface,#fef3c7)] text-[var(--color-feedback-attention-default,#f59e0b)]',
+    error: 'bg-[var(--color-feedback-error-surface,#fee2e2)] text-[var(--color-feedback-error-default,#dc2626)]',
+    success: 'bg-[var(--color-feedback-success-surface,#dcfce7)] text-[var(--color-feedback-success-default,#059669)]',
   };
 
   return (
@@ -39,15 +31,15 @@ export const Tag: React.FC<TagProps> = ({
       {...props}
     >
       {leftIcon && (
-        <span className={`flex items-center justify-center w-4 h-4 ${iconClasses[variant]}`}>
+        <span className="flex items-center justify-center shrink-0 size-[12px]">
           {leftIcon}
         </span>
       )}
-      <span className="font-sans text-xs font-medium leading-4">
-        {children}
+      <span className="flex flex-col justify-center leading-[0]">
+        <p className="leading-normal whitespace-pre">{children}</p>
       </span>
       {rightIcon && (
-        <span className={`flex items-center justify-center w-4 h-4 ${iconClasses[variant]}`}>
+        <span className="flex items-center justify-center shrink-0 size-[12px]">
           {rightIcon}
         </span>
       )}

@@ -20,14 +20,21 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const initials = !src && name ? getInitials(name) : '';
     
     const sizeClasses = {
-      '24': 'w-6 h-6 text-xs leading-4 tracking-normal',
-      '32': 'w-8 h-8 text-sm leading-[18px] tracking-normal',
-      '40': 'w-10 h-10 text-base leading-5 tracking-normal',
-      '110': 'w-[110px] h-[110px] text-5xl leading-[60px] tracking-[-0.02em]',
+      '24': 'size-[24px]',
+      '32': 'size-[32px]',
+      '40': 'size-[40px]',
+      '110': 'size-[110px]',
+    };
+
+    const textClasses = {
+      '24': 'text-[12px] leading-[16px] h-[18px] w-[24px] left-[12px] top-[3px]',
+      '32': 'text-[14px] leading-[20px] h-[20px] w-[32px] left-[16px] top-[6px]',
+      '40': 'text-[16px] leading-[24px] h-[24px] w-[40px] left-[20px] top-[8px]',
+      '110': 'text-[48px] leading-[40px] h-[54px] w-[110px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center',
     };
     
-    const baseClasses = 'relative flex items-center justify-center rounded-full overflow-hidden font-[var(--font-family-display)] font-bold';
-    const bgClass = !src ? 'bg-[var(--color-blue-100)]' : '';
+    const baseClasses = 'relative rounded-[var(--radius-pill,9999px)] border-[0.5px] border-[var(--color-border-default,#c7d2fe)] border-solid';
+    const bgClass = !src ? 'bg-[#e3f2fd]' : '';
 
     return (
       <div
@@ -39,15 +46,15 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           <img 
             src={src} 
             alt={alt || name} 
-            className="w-full h-full object-cover"
+            className="absolute inset-0 max-w-none object-cover object-center pointer-events-none rounded-[var(--radius-pill,9999px)] size-full"
           />
         ) : (
-          <span className="flex items-center justify-center w-full h-full text-[var(--color-brand-default)]">
+          <p className={`absolute font-[family-name:var(--font-family-sans,'Open_Sans:Regular',sans-serif)] font-[var(--font-weight-font-medium,500)] text-[color:var(--color-brand-default,#1d4ed8)] text-center tracking-[var(--letter-spacing-tracking-normal,0px)] -translate-x-1/2 ${textClasses[size]}`}>
             {initials}
-          </span>
+          </p>
         )}
         {size === '110' && src && (
-          <div className="absolute inset-[-0.5px] rounded-full shadow-[0_0_16px_8px_rgba(0,0,0,0.3)] pointer-events-none" />
+          <div className="absolute inset-[-0.5px] shadow-[0px_0px_10px_7px_inset_rgba(1,12,83,0.4)] rounded-[var(--radius-pill,9999px)]" />
         )}
       </div>
     );

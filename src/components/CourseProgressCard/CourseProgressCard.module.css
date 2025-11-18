@@ -11,10 +11,11 @@
   max-width: 100%;
 }
 
-.content {
+.topSection {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
 /* Progress Section */
@@ -71,23 +72,25 @@
 }
 
 .currentClass {
-  display: flex;
-  flex-direction: column;
+  height: 19px;
+  overflow: hidden;
+  position: relative;
   font-size: 14px;
-  line-height: 1.35;
+  white-space: nowrap;
   max-width: 289px;
 }
 
 .currentClassLabel {
   font-family: var(--font-body);
   font-weight: 700;
-  color: var(--color-blue-700);
+  color: var(--color-brand-default, #1d4ed8);
 }
 
 .currentClassInfo {
   font-family: var(--font-body);
   font-weight: 400;
-  color: var(--color-gray-500);
+  color: var(--color-text-body, #64748b);
+  margin-left: 4px;
 }
 
 /* Responsive */

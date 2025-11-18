@@ -23,7 +23,6 @@ const menuItems = [
     items: [
       { title: 'Alert', href: '/components/alert' },
       { title: 'Avatar', href: '/components/avatar' },
-      { title: 'Badge', href: '/components/badge' },
       { title: 'Banner', href: '/components/banner' },
       { title: 'Button', href: '/components/button' },
       { title: 'Card', href: '/components/card' },

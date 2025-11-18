@@ -1,7 +1,8 @@
 .container {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2-5);
+  gap: 11px;
+  line-height: 0;
 }
 
 /* ========================================
@@ -9,8 +10,8 @@
    ======================================== */
 .track {
   position: relative;
-  background-color: var(--color-indigo-100);
-  border-radius: var(--border-radius-full);
+  background-color: #ebf1ff;
+  border-radius: 19px;
   overflow: hidden;
   flex: 1;
 }
@@ -20,8 +21,8 @@
    ======================================== */
 .fill {
   height: 100%;
-  background-color: var(--color-green-400);
-  border-radius: var(--border-radius-full);
+  background-color: #86efac;
+  border-radius: 44px;
   transition: width 0.3s ease;
 }
 
@@ -30,7 +31,6 @@
    ======================================== */
 .small .track {
   height: 8px;
-  max-width: 158px;
 }
 
 .large .track {
@@ -42,9 +42,9 @@
    ======================================== */
 .label {
   font-family: var(--font-family-brand);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-normal);
-  color: var(--color-text-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-body, #64748b);
   line-height: 1.1;
   white-space: nowrap;
   flex-shrink: 0;

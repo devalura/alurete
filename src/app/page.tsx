@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
-import { Badge } from '@/components/Badge';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -82,9 +81,6 @@ export default function Home() {
                 <div className={styles.cardContent}>
                   <h4>Input</h4>
                   <p>Campos de entrada com validação, ícones e helper text.</p>
-                  <div className={styles.cardDemo}>
-                    <Badge variant="success">5 variants</Badge>
-                  </div>
                 </div>
               </Card>
             </Link>
@@ -94,22 +90,6 @@ export default function Home() {
                 <div className={styles.cardContent}>
                   <h4>Card</h4>
                   <p>Containers versáteis com header, footer e padding configurável.</p>
-                  <div className={styles.cardDemo}>
-                    <Badge variant="info">Flexible</Badge>
-                  </div>
-                </div>
-              </Card>
-            </Link>
-
-            <Link href="/components/badge" className={styles.cardLink}>
-              <Card hoverable>
-                <div className={styles.cardContent}>
-                  <h4>Badge</h4>
-                  <p>Marcadores de status com 5 variantes e 3 aparências.</p>
-                  <div className={styles.cardDemo}>
-                    <Badge variant="warning" size="small">New</Badge>
-                    <Badge variant="success" size="small">Success</Badge>
-                  </div>
                 </div>
               </Card>
             </Link>
@@ -119,9 +99,6 @@ export default function Home() {
                 <div className={styles.cardContent}>
                   <h4>Alert</h4>
                   <p>Mensagens de feedback com 4 variantes e opção de fechar.</p>
-                  <div className={styles.cardDemo}>
-                    <Badge variant="error">4 types</Badge>
-                  </div>
                 </div>
               </Card>
             </Link>

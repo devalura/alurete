@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Brand.module.css';
+import { brandLogos } from '@/utils/brandLogos';
 
 export type BrandProduct = 'alura' | 'fiap' | 'pm3' | 'empresas' | 'alun';
 export type BrandVariant = 'default' | 'negative';
@@ -14,29 +15,6 @@ export interface BrandProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Altura customizada */
   height?: number | string;
 }
-
-const brandAssets = {
-  alura: {
-    default: 'http://localhost:3845/assets/d834ae9208edc96f7a669079e8939588eea72360.svg',
-    negative: 'http://localhost:3845/assets/4e9b1e704064072df41333810bc47fc1e0819cee.svg',
-  },
-  fiap: {
-    default: 'http://localhost:3845/assets/9a9ed8559229ac89f8f83d6be53ee543021bc951.svg',
-    negative: 'http://localhost:3845/assets/9a9ed8559229ac89f8f83d6be53ee543021bc951.svg', // Usar mesmo asset com filtro CSS
-  },
-  pm3: {
-    default: 'http://localhost:3845/assets/b49cf26640b7f05a6517da57c2ad838db2c158f3.svg',
-    negative: 'http://localhost:3845/assets/b49cf26640b7f05a6517da57c2ad838db2c158f3.svg',
-  },
-  empresas: {
-    default: 'http://localhost:3845/assets/281130881bec807474476a60b3b1f04e6b7591c0.svg',
-    negative: 'http://localhost:3845/assets/281130881bec807474476a60b3b1f04e6b7591c0.svg',
-  },
-  alun: {
-    default: 'http://localhost:3845/assets/661496be4a7f5cc2e8864c1d1936f4fca5f57232.svg',
-    negative: 'http://localhost:3845/assets/661496be4a7f5cc2e8864c1d1936f4fca5f57232.svg',
-  },
-};
 
 const brandNames = {
   alura: 'Alura',
@@ -57,7 +35,7 @@ const defaultSizes = {
 export const Brand = React.forwardRef<HTMLDivElement, BrandProps>(
   ({ product, variant = 'default', width, height, className, ...props }, ref) => {
     const size = defaultSizes[product];
-    const src = brandAssets[product][variant];
+    const src = brandLogos[product][variant];
     const alt = brandNames[product];
 
     return (

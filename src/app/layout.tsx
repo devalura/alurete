@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
+import { AppLayout } from './AppLayout';
 
 export const metadata: Metadata = {
   title: 'Design System - Showcase',
@@ -21,7 +22,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <AppLayout>{children}</AppLayout>
+      </body>
     </html>
   );
 }

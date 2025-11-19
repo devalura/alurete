@@ -36,7 +36,7 @@ export default function BannerPage() {
         <h2>Banner sem Imagem</h2>
         <div className={styles.examples}>
           <Banner
-            logo="http://localhost:3845/assets/07d832feb6f864e93a1e78dc87396923156c3be7.svg"
+            logo="/images/Product=Alura.svg"
             topLabel="NOVOS"
             bottomLabel="EPISÓDIOS"
             totalSlides={3}
@@ -49,8 +49,8 @@ export default function BannerPage() {
         <h2>Banner com Labels Personalizados</h2>
         <div className={styles.examples}>
           <Banner
-            backgroundImage="http://localhost:3845/assets/2f38d970b6b52734f0839cd3ef750b0c91a412e6.png"
-            logo="http://localhost:3845/assets/07d832feb6f864e93a1e78dc87396923156c3be7.svg"
+            backgroundImage="https://via.placeholder.com/1200x400/167BF7/FFFFFF?text=Explore+Conteudos"
+            logo="/images/Product=Alura.svg"
             topLabel="EXPLORE"
             bottomLabel="CONTEÚDOS"
             totalSlides={4}
@@ -63,8 +63,8 @@ export default function BannerPage() {
         <h2>Múltiplos Slides</h2>
         <div className={styles.examples}>
           <Banner
-            backgroundImage="http://localhost:3845/assets/2f38d970b6b52734f0839cd3ef750b0c91a412e6.png"
-            logo="http://localhost:3845/assets/07d832feb6f864e93a1e78dc87396923156c3be7.svg"
+            backgroundImage="https://via.placeholder.com/1200x400/167BF7/FFFFFF?text=Slide+3+de+5"
+            logo="/images/Product=Alura.svg"
             topLabel="NOVOS"
             bottomLabel="EPISÓDIOS"
             totalSlides={5}

@@ -1,63 +1,12 @@
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ========================================
-   HEADER
-   ======================================== */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-6) var(--spacing-8);
-  background-color: var(--color-surface-secondary);
-  border-bottom: var(--border-width) solid var(--color-border-default);
-}
-
-.title {
-  font-family: var(--font-family-brand);
-  font-size: var(--font-size-2xl);
-  margin: 0;
-  color: var(--color-text-title);
-}
-
-.headerActions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-6);
-}
-
-.mainNav {
-  display: flex;
-  gap: var(--spacing-2);
-}
-
-.navLink {
-  padding: var(--spacing-2) var(--spacing-4);
-  border-radius: var(--border-radius);
-  text-decoration: none;
-  color: var(--color-text-body);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  transition: all 0.2s;
-}
-
-.navLink:hover {
-  background-color: var(--color-surface-subtle);
-  color: var(--color-text-title);
+  width: 100%;
 }
 
 /* ========================================
    MAIN CONTENT
    ======================================== */
 .main {
-  flex: 1;
-  max-width: 1400px;
   width: 100%;
-  margin: 0 auto;
-  padding: var(--spacing-12) var(--spacing-8);
 }
 
 .hero {

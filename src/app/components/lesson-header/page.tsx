@@ -50,9 +50,9 @@ export default function LessonHeaderPage() {
         <div className={styles.demo}>
           <LessonHeader
             lessonTitle="Framer: usando IA para criar um site"
-            lessonThumbnail="http://localhost:3845/assets/3f20c1dd3209f3ff7ee228e9ac8c655a90992e2a.svg"
+            lessonThumbnail="https://via.placeholder.com/26x26"
             userName="Alice"
-            userPhoto="http://localhost:3845/assets/acb6e86ec642d2a6f99d832b4002b4ec3202af53.png"
+            userPhoto="https://i.pravatar.cc/150?img=1"
             onBack={() => alert('Voltando para a lista de aulas...')}
             onUserMenuClick={() => setUserMenuOpen(!userMenuOpen)}
           />
@@ -79,7 +79,7 @@ export default function LessonHeaderPage() {
           <LessonHeader
             lessonTitle="Introdução ao JavaScript"
             userName="Maria Santos"
-            userPhoto="http://localhost:3845/assets/acb6e86ec642d2a6f99d832b4002b4ec3202af53.png"
+            userPhoto="https://i.pravatar.cc/150?img=5"
             onBack={() => console.log('Back clicked')}
           />
         </div>
@@ -104,9 +104,9 @@ export default function LessonHeaderPage() {
         <div className={styles.mobileDemo}>
           <LessonHeader
             lessonTitle="Framer: usando IA para criar um site"
-            lessonThumbnail="http://localhost:3845/assets/3f20c1dd3209f3ff7ee228e9ac8c655a90992e2a.svg"
+            lessonThumbnail="https://via.placeholder.com/26x26"
             userName="Alice"
-            userPhoto="http://localhost:3845/assets/acb6e86ec642d2a6f99d832b4002b4ec3202af53.png"
+            userPhoto="https://i.pravatar.cc/150?img=1"
             onBack={() => console.log('Back clicked')}
             onUserMenuClick={() => console.log('User menu clicked')}
           />

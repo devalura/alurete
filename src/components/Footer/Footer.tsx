@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({
   sections = defaultSections,
   socialLinks = {},
   appLinks = {},
-  logoSrc = 'http://localhost:3845/assets/bc93b8712e3bb00c340c4a8aa7d63f1328f8ce76.svg',
+  logoSrc = '/images/Product=Alura.svg',
   responsive = true,
 }) => {
   return (
@@ -99,27 +99,27 @@ export const Footer: React.FC<FooterProps> = ({
             <div className={styles.socialIcons}>
               {socialLinks.youtube && (
                 <a href={socialLinks.youtube} className={styles.socialIcon} aria-label="YouTube">
-                  <img src="http://localhost:3845/assets/cae9884a5da05239094e8d5d95e72793ca31a8da.svg" alt="YouTube" />
+                  <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" width="24" height="24" />
                 </a>
               )}
               {socialLinks.facebook && (
                 <a href={socialLinks.facebook} className={styles.socialIcon} aria-label="Facebook">
-                  <img src="http://localhost:3845/assets/a2aa6d2d2546122b70d57e1ca7ba1124eb2f32a6.svg" alt="Facebook" />
+                  <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" width="24" height="24" />
                 </a>
               )}
               {socialLinks.twitter && (
                 <a href={socialLinks.twitter} className={styles.socialIcon} aria-label="Twitter">
-                  <img src="http://localhost:3845/assets/450431314f591b2fd8e4ee5143f10fbb570fafec.svg" alt="Twitter" />
+                  <img src="https://cdn.simpleicons.org/x/000000" alt="Twitter" width="24" height="24" />
                 </a>
               )}
               {socialLinks.instagram && (
                 <a href={socialLinks.instagram} className={styles.socialIcon} aria-label="Instagram">
-                  <img src="http://localhost:3845/assets/10a1413277b93a0062cec1be55f3fbcb555da38d.svg" alt="Instagram" />
+                  <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" width="24" height="24" />
                 </a>
               )}
               {socialLinks.discord && (
                 <a href={socialLinks.discord} className={styles.socialIcon} aria-label="Discord">
-                  <img src="http://localhost:3845/assets/23916dd0fbdda64b7e82dde3290fcf70fd2edd6d.svg" alt="Discord" />
+                  <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" width="24" height="24" />
                 </a>
               )}
             </div>
@@ -131,12 +131,12 @@ export const Footer: React.FC<FooterProps> = ({
             <div className={styles.appIcons}>
               {appLinks.googlePlay && (
                 <a href={appLinks.googlePlay} className={styles.appIcon} aria-label="Google Play">
-                  <img src="http://localhost:3845/assets/23380b46213a38567f209c8f44103aec8120b7a2.svg" alt="Google Play" />
+                  <img src="https://cdn.simpleicons.org/googleplay/414141" alt="Google Play" width="120" height="40" />
                 </a>
               )}
               {appLinks.appStore && (
                 <a href={appLinks.appStore} className={styles.appIcon} aria-label="App Store">
-                  <img src="http://localhost:3845/assets/0754e46e7f55726ee4da4f299eb43998b71a7e15.svg" alt="App Store" />
+                  <img src="https://cdn.simpleicons.org/apple/000000" alt="App Store" width="120" height="40" />
                 </a>
               )}
             </div>

@@ -1,0 +1,77 @@
+/* ========================================
+   APP LAYOUT
+   ======================================== */
+.appLayout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ========================================
+   MAIN WRAPPER
+   ======================================== */
+.mainWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 280px;
+  min-height: 100vh;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .mainWrapper {
+    margin-left: 0;
+  }
+}
+
+/* ========================================
+   MENU BUTTON (Mobile)
+   ======================================== */
+.menuButton {
+  display: none;
+  position: fixed;
+  top: var(--spacing-4);
+  left: var(--spacing-4);
+  z-index: 60;
+  width: 48px;
+  height: 48px;
+  background: var(--color-background-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-body);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+}
+
+.menuButton:hover {
+  background-color: var(--color-surface-subtle);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .menuButton {
+    display: flex;
+  }
+}
+
+/* ========================================
+   MAIN CONTENT
+   ======================================== */
+.mainContent {
+  flex: 1;
+  padding: var(--spacing-8);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: var(--spacing-6) var(--spacing-4);
+  }
+}

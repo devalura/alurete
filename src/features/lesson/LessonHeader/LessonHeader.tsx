@@ -22,12 +22,12 @@ export interface LessonHeaderProps {
 
 export const LessonHeader: React.FC<LessonHeaderProps> = ({
   lessonTitle,
-  lessonThumbnail = 'http://localhost:3845/assets/3f20c1dd3209f3ff7ee228e9ac8c655a90992e2a.svg',
+  lessonThumbnail = 'https://via.placeholder.com/26x26',
   userName,
   userPhoto,
   onBack,
   onUserMenuClick,
-  logoSrc = 'http://localhost:3845/assets/4e9b1e704064072df41333810bc47fc1e0819cee.svg',
+  logoSrc = '/images/Product=Alura.svg',
 }) => {
   return (
     <header className={styles.header}>

@@ -55,21 +55,21 @@ export default function CardPage() {
         <div className={styles.examples}>
           <CareerCard
             title="Especialista em IA"
-            image="http://localhost:3845/assets/52ef7f6a317b02ee0bb2931ecca3575ffb048018.png"
+            image="https://via.placeholder.com/400x200/4A90E2/FFFFFF?text=Especialista+em+IA"
             tag="CARREIRA"
             onClick={() => alert('Ver carreira')}
           />
           
           <CareerCard
             title="Análise de Dados"
-            image="http://localhost:3845/assets/566bf8608c1980f4f7c192bbc10898b5e2a8aa7c.png"
+            image="https://via.placeholder.com/400x200/E24A90/FFFFFF?text=Analise+de+Dados"
             tag="CARREIRA"
             onClick={() => alert('Ver carreira')}
           />
           
           <CareerCard
             title="Ciência de Dados"
-            image="http://localhost:3845/assets/abf84aaf7613dce0852b80d11e3534d8cc5e3234.png"
+            image="https://via.placeholder.com/400x200/90E24A/FFFFFF?text=Ciencia+de+Dados"
             tag="CARREIRA"
             showLockIcon
             onClick={() => alert('Carreira bloqueada')}
@@ -102,22 +102,22 @@ export default function CardPage() {
         <div className={styles.careerGrid}>
           <CareerCard
             title="Desenvolvimento Back-End Java"
-            image="http://localhost:3845/assets/87d5ce0675a1eea02a73b7480931d542b7bd020c.png"
+            image="https://via.placeholder.com/400x200/E2904A/FFFFFF?text=Back-End+Java"
             tag="CARREIRA"
           />
           <CareerCard
             title="AppSec: Desenvolvimento Seguro"
-            image="http://localhost:3845/assets/605e053eda378604c50accb18298cf3cc67666fe.png"
+            image="https://via.placeholder.com/400x200/4AE290/FFFFFF?text=AppSec"
             tag="CARREIRA"
           />
           <CareerCard
             title="Ciência de Dados"
-            image="http://localhost:3845/assets/abf84aaf7613dce0852b80d11e3534d8cc5e3234.png"
+            image="https://via.placeholder.com/400x200/90E24A/FFFFFF?text=Ciencia+Dados"
             tag="CARREIRA"
           />
           <CareerCard
             title="Engenharia de IA"
-            image="http://localhost:3845/assets/cac80b8352b8c2a1aadcbaf15e3e4040fb21ab56.png"
+            image="https://via.placeholder.com/400x200/E24A4A/FFFFFF?text=Engenharia+IA"
             tag="CARREIRA"
           />
         </div>

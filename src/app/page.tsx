@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
@@ -8,48 +7,8 @@ import { Badge } from '@/components/Badge';
 import styles from './page.module.css';
 
 export default function Home() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
-
-  if (!mounted) {
-    return null;
-  }
-
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Design System</h1>
-        <div className={styles.headerActions}>
-          <nav className={styles.mainNav}>
-            <Link href="/components/button" className={styles.navLink}>
-              Components
-            </Link>
-            <Link href="/tokens/colors" className={styles.navLink}>
-              Tokens
-            </Link>
-          </nav>
-          <Button variant="secondary" onClick={toggleTheme} size="small">
-            {theme === 'light' ? '🌙' : '☀️'}
-          </Button>
-        </div>
-      </header>
-
       <main className={styles.main}>
         <section className={styles.hero}>
           <h2>Bem-vindo ao Design System</h2>
@@ -186,7 +145,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <p>Design System • Baseado em design-tokens.json • Theme: {theme}</p>
+        <p>Design System • Baseado em design-tokens.json</p>
       </footer>
     </div>
   );

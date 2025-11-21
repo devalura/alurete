@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
-<<<<<<< HEAD
 import { AppLayout } from './AppLayout';
-=======
-import { Sidebar } from '@/components/Sidebar';
->>>>>>> a128a0a3e50a7f5889715be730c8e0457c114468
 
 export const metadata: Metadata = {
   title: 'Design System - Showcase',
@@ -65,14 +61,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
-<<<<<<< HEAD
         <AppLayout>{children}</AppLayout>
-=======
-        <Sidebar items={menuItems} />
-        <div style={{ marginLeft: '280px' }}>
-          {children}
-        </div>
->>>>>>> a128a0a3e50a7f5889715be730c8e0457c114468
       </body>
     </html>
   );

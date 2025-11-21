@@ -44,7 +44,6 @@
 }
 
 .primary:hover:not(:disabled) {
-<<<<<<< HEAD
   background-color: var(--color-interactive-primary-hover);
 }
 
@@ -54,17 +53,6 @@
 
 .primary:disabled {
   background-color: var(--color-interactive-primary-disabled);
-=======
-  background-color: var(--color-blue-800);
-}
-
-.primary:active:not(:disabled) {
-  background-color: var(--color-blue-900);
-}
-
-.primary:disabled {
-  background-color: var(--color-blue-300);
->>>>>>> a128a0a3e50a7f5889715be730c8e0457c114468
   cursor: not-allowed;
   opacity: 0.6;
 }

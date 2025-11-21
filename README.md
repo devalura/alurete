@@ -2,6 +2,17 @@
 
 Sistema de design da Alura com componentes prontos para usar em aplicações **JSP/Spring** e **React/Next.js**.
 
+---
+
+## 📍 Navegação Rápida
+
+- 🎯 [Para Desenvolvedores Spring](#-para-desenvolvedores-spring-você)
+- 🎨 [Para Product Designers](#-para-product-designers)
+- ⚛️ [Para Desenvolvedores Front-end](#️-para-desenvolvedores-front-end-reactnextjs)
+
+---
+
+
 ## 🎯 Para Desenvolvedores Spring (você!)
 
 ### Setup Rápido (2 minutos)

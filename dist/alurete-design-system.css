@@ -1,7 +1,7 @@
 /**
  * Alurete Design System - Static Distribution
  * Version: 1.0.0
- * Generated: 2025-11-21T00:40:30.606Z
+ * Generated: 2025-11-21T02:29:18.737Z
  * 
  * Usage in JSP/Spring:
  * <link rel="stylesheet" href="/css/alurete-design-system.css">
@@ -166,6 +166,29 @@
   --spacing-36: 144px;
   --spacing-40: 160px;
 
+  /* Semantic Spacing - Inset (padding) */
+  --spacing-inset-2xsm: 6px;   /* spacing-1-5 */
+  --spacing-inset-xsm: 8px;    /* spacing-2 */
+  --spacing-inset-sm: 12px;    /* spacing-3 */
+  --spacing-inset-md: 12px;    /* spacing-3 */
+  --spacing-inset-lg: 16px;    /* spacing-4 */
+  --spacing-inset-xl: 24px;    /* spacing-6 */
+  --spacing-inset-2xl: 28px;   /* spacing-7 */
+
+  /* Semantic Spacing - Inline (horizontal gap) */
+  --spacing-inline-2xsm: 6px;  /* spacing-1-5 */
+  --spacing-inline-xsm: 8px;   /* spacing-2 */
+  --spacing-inline-sm: 12px;   /* spacing-3 */
+  --spacing-inline-md: 16px;   /* spacing-4 */
+  --spacing-inline-lg: 24px;   /* spacing-6 */
+
+  /* Semantic Spacing - Stack (vertical gap) */
+  --spacing-stack-2xsm: 6px;   /* spacing-1-5 */
+  --spacing-stack-xsm: 8px;    /* spacing-2 */
+  --spacing-stack-sm: 12px;    /* spacing-3 */
+  --spacing-stack-md: 16px;    /* spacing-4 */
+  --spacing-stack-lg: 32px;    /* spacing-8 */
+
   /* ========================================
      BORDERS
      ======================================== */
@@ -216,9 +239,15 @@
   --color-brand-hover: #1e3a8a; /* blue-900 */
   --color-brand-light: #bfdbfe; /* blue-200 */
 
+  /* Background */
+  --color-background-brand-subtle: #dbeafe; /* blue-100 */
+  --color-background-surface-default: #ffffff; /* white */
+  --color-background-surface-hover: #f8fafc; /* slate-50 */
+
   /* Border */
   --color-border-default: #c7d2fe; /* indigo-200 */
   --color-border-subtle: #e2e8f0; /* slate-200 */
+  --color-border-hover: #a5b4fc; /* indigo-300 */
   --color-border-selected: #2563eb; /* blue-600 */
   --color-border-focus: #93c5fd; /* blue-300 */
 
@@ -360,6 +389,7 @@
   /* Border */
   --color-border-default: #334155; /* slate-700 */
   --color-border-subtle: #1e293b; /* slate-800 */
+  --color-border-hover: #475569; /* slate-600 */
   --color-border-selected: #60a5fa; /* blue-400 */
   --color-border-focus: #3b82f6; /* blue-500 */
 
@@ -404,6 +434,9 @@
   /* Text */
   --color-text-title: #f1f5f9; /* slate-100 */
   --color-text-body: #94a3b8; /* slate-400 */
+  --color-text-primary: #f1f5f9; /* slate-100 */
+  --color-text-secondary: #94a3b8; /* slate-400 */
+  --color-text-tertiary: #64748b; /* slate-500 */
   --color-text-interactive: #3b82f6; /* blue-500 */
   --color-text-on-brand: #f1f5f9; /* slate-100 */
   --color-text-on-interactive: #ffffff; /* base-white */
@@ -687,53 +720,6 @@
 
 .ds-alert__message {
     margin: 0;
-}
-
-/**
- * Badge Component - Global CSS for JSP/Spring
- * Use class: ds-badge ds-badge--{variant}
- */
-
-.ds-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2px 8px;
-    border-radius: var(--border-radius-full);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.ds-badge--primary {
-    background-color: var(--color-brand-default);
-    color: var(--color-text-on-brand);
-}
-
-.ds-badge--secondary {
-    background-color: var(--color-surface-subtle);
-    color: var(--color-text-body);
-}
-
-.ds-badge--success {
-    background-color: var(--color-feedback-success-default);
-    color: var(--color-base-white);
-}
-
-.ds-badge--error {
-    background-color: var(--color-feedback-error-default);
-    color: var(--color-base-white);
-}
-
-.ds-badge--warning {
-    background-color: var(--color-feedback-attention-default);
-    color: var(--color-base-white);
-}
-
-.ds-badge--info {
-    background-color: var(--color-feedback-info-default);
-    color: var(--color-base-white);
 }
 
 /**

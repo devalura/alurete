@@ -77,16 +77,7 @@ import { Card } from '@/components/Card';
 
 **Variantes:** `success` | `error` | `warning` | `info`
 
----
 
-### Badge
-```html
-<!-- JSP/Spring -->
-<span class="ds-badge ds-badge--primary">Novo</span>
-<span class="ds-badge ds-badge--success">Ativo</span>
-```
-
-**Variantes:** `primary` | `secondary` | `success` | `error` | `warning` | `info`
 
 ---
 

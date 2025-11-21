@@ -12,11 +12,7 @@ Os seguintes componentes foram completamente migrados para usar Tailwind CSS com
    - Estados: hover, active, disabled
    - ✅ Tema dinâmico preservado via variáveis CSS
 
-2. **Badge** (`src/components/Badge/`)
-   - Todas as variants: success, error, warning, info, neutral
-   - Todas as appearances: solid, outline, subtle
-   - Todos os sizes: small, medium, large
-   - ✅ Tema dinâmico preservado via variáveis CSS
+
 
 3. **Tag** (`src/components/Tag/`)
    - Todas as variants: primary, secondary, attention, error, success

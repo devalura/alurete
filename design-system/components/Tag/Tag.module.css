@@ -1,0 +1,85 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--border-radius-full);
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Primary variant - Blue */
+.primary {
+  background-color: var(--color-blue-100);
+  color: var(--color-blue-700);
+}
+
+.primary .icon {
+  color: var(--color-gray-500);
+}
+
+/* Secondary variant - Gray */
+.secondary {
+  background-color: var(--color-gray-200);
+  color: var(--color-body);
+}
+
+.secondary .icon {
+  color: var(--color-body);
+}
+
+/* Attention variant - Yellow */
+.attention {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.attention .icon {
+  color: #854d0e;
+}
+
+/* Error variant - Red */
+.error {
+  background-color: #fecaca;
+  color: #991b1b;
+}
+
+.error .icon {
+  color: #991b1b;
+}
+
+/* Success variant - Green */
+.success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.success .icon {
+  color: #065f46;
+}

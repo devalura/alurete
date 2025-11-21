@@ -1,0 +1,144 @@
+.banner {
+  position: relative;
+  width: 194px;
+  height: 235.212px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0e1731;
+}
+
+/* Background Image */
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 194px;
+  height: 235.212px;
+  border-radius: 11.979px;
+  overflow: hidden;
+}
+
+.backgroundImage img {
+  position: absolute;
+  top: -35.47%;
+  left: -161.67%;
+  width: 422.91%;
+  height: 229.61%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #0e1731;
+  opacity: 0.5;
+  border-radius: 11.979px;
+}
+
+/* Decorative Elements */
+.decorativeElements {
+  position: absolute;
+  left: 29.82px;
+  top: -53.9px;
+  pointer-events: none;
+}
+
+.pathsShapes {
+  position: absolute;
+  left: 29.82px;
+  top: -53.9px;
+  width: 201.302px;
+  height: 301.256px;
+  background-image: linear-gradient(330.652deg, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0.15));
+  transform: rotate(330.652deg) scaleY(-1);
+  opacity: 0.3;
+}
+
+.element02 {
+  position: absolute;
+  left: 86px;
+  top: 50px;
+  width: 217px;
+  height: 115px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+  transform: rotate(90deg);
+  opacity: 0.9;
+  filter: blur(40px);
+}
+
+/* Logo */
+.logoContainer {
+  position: absolute;
+  left: 20px;
+  top: calc(50% - 63px);
+  transform: translateY(-50%);
+  width: 96.905px;
+}
+
+.logo {
+  width: 96.532px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* Labels */
+.labelsContainer {
+  position: absolute;
+  left: 20px;
+  top: calc(50% + 40px);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.labelTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 33px;
+  padding: 19.432px;
+  background-color: #292c64;
+  box-sizing: border-box;
+}
+
+.labelTop p {
+  font-family: var(--font-title);
+  font-size: 18.63px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.265;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.labelBottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 33px;
+  padding: 19.432px;
+  background-color: #f1eaff;
+  box-sizing: border-box;
+}
+
+.labelBottom p {
+  font-family: var(--font-title);
+  font-size: 18.63px;
+  font-weight: 400;
+  color: #5f2dcd;
+  line-height: 1.265;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* Carousel Indicator */
+.indicatorContainer {
+  position: absolute;
+  left: 130px;
+  top: 210px;
+}

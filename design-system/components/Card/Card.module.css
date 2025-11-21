@@ -1,0 +1,93 @@
+.card {
+  background-color: var(--card-surface);
+  border: var(--border-width) solid var(--color-border-default);
+  border-radius: var(--border-radius-xl);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   VARIANTS
+   ======================================== */
+.default {
+  background-color: var(--card-surface);
+}
+
+.secondary {
+  background-color: var(--card-secondary);
+}
+
+/* ========================================
+   PADDING
+   ======================================== */
+.padding-none {
+  padding: 0;
+}
+
+.padding-small {
+  padding: var(--spacing-3);
+}
+
+.padding-medium {
+  padding: var(--spacing-6);
+}
+
+.padding-large {
+  padding: var(--spacing-8);
+}
+
+/* ========================================
+   HEADER & FOOTER
+   ======================================== */
+.header {
+  padding-bottom: var(--spacing-4);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+  margin-bottom: var(--spacing-4);
+}
+
+.footer {
+  padding-top: var(--spacing-4);
+  border-top: var(--border-width) solid var(--color-border-subtle);
+  margin-top: var(--spacing-4);
+}
+
+/* Ajuste de padding quando há header/footer com padding-none */
+.padding-none .header,
+.padding-none .footer {
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+}
+
+.padding-none .header {
+  padding-top: var(--spacing-6);
+}
+
+.padding-none .footer {
+  padding-bottom: var(--spacing-6);
+}
+
+/* ========================================
+   CONTENT
+   ======================================== */
+.content {
+  flex: 1;
+}
+
+/* ========================================
+   HOVERABLE
+   ======================================== */
+.hoverable {
+  cursor: pointer;
+}
+
+.hoverable:hover {
+  border-color: var(--color-border-selected);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.hoverable:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

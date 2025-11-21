@@ -1,0 +1,123 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-full);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+/* ========================================
+   SIZES
+   ======================================== */
+.small {
+  padding: var(--spacing-0-5) var(--spacing-2);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-4);
+  min-height: 20px;
+}
+
+.medium {
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-5);
+  min-height: 24px;
+}
+
+.large {
+  padding: var(--spacing-1-5) var(--spacing-4);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-6);
+  min-height: 28px;
+}
+
+/* ========================================
+   VARIANTS - SOLID
+   ======================================== */
+.success.solid {
+  background-color: var(--color-feedback-success-default);
+  color: var(--color-base-white);
+}
+
+.error.solid {
+  background-color: var(--color-feedback-error-default);
+  color: var(--color-base-white);
+}
+
+.warning.solid {
+  background-color: var(--color-feedback-attention-default);
+  color: var(--color-base-white);
+}
+
+.info.solid {
+  background-color: var(--color-feedback-info-default);
+  color: var(--color-base-white);
+}
+
+.neutral.solid {
+  background-color: var(--color-text-body);
+  color: var(--color-base-white);
+}
+
+/* ========================================
+   VARIANTS - OUTLINE
+   ======================================== */
+.success.outline {
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-feedback-success-default);
+  color: var(--color-feedback-success-default);
+}
+
+.error.outline {
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-feedback-error-default);
+  color: var(--color-feedback-error-default);
+}
+
+.warning.outline {
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-feedback-attention-default);
+  color: var(--color-feedback-attention-default);
+}
+
+.info.outline {
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-feedback-info-default);
+  color: var(--color-feedback-info-default);
+}
+
+.neutral.outline {
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-border-default);
+  color: var(--color-text-body);
+}
+
+/* ========================================
+   VARIANTS - SUBTLE
+   ======================================== */
+.success.subtle {
+  background-color: var(--color-feedback-success-surface);
+  color: var(--color-feedback-success-default);
+}
+
+.error.subtle {
+  background-color: var(--color-feedback-error-surface);
+  color: var(--color-feedback-error-default);
+}
+
+.warning.subtle {
+  background-color: var(--color-feedback-attention-surface);
+  color: var(--color-feedback-attention-default);
+}
+
+.info.subtle {
+  background-color: var(--color-feedback-info-surface);
+  color: var(--color-feedback-info-default);
+}
+
+.neutral.subtle {
+  background-color: var(--color-surface-subtle);
+  color: var(--color-text-body);
+}

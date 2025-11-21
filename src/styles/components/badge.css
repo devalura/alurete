@@ -1,0 +1,46 @@
+/**
+ * Badge Component - Global CSS for JSP/Spring
+ * Use class: ds-badge ds-badge--{variant}
+ */
+
+.ds-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ds-badge--primary {
+    background-color: var(--color-brand-default);
+    color: var(--color-text-on-brand);
+}
+
+.ds-badge--secondary {
+    background-color: var(--color-surface-subtle);
+    color: var(--color-text-body);
+}
+
+.ds-badge--success {
+    background-color: var(--color-feedback-success-default);
+    color: var(--color-base-white);
+}
+
+.ds-badge--error {
+    background-color: var(--color-feedback-error-default);
+    color: var(--color-base-white);
+}
+
+.ds-badge--warning {
+    background-color: var(--color-feedback-attention-default);
+    color: var(--color-base-white);
+}
+
+.ds-badge--info {
+    background-color: var(--color-feedback-info-default);
+    color: var(--color-base-white);
+}

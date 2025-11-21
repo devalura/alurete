@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alurete Design System - JSP/Spring Demo</title>
+    <link rel="stylesheet" href="../dist/alurete-design-system.css">
+    <style>
+        body {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--color-surface-secondary);
+            border-radius: var(--border-radius-xl);
+        }
+        .demo-section h2 {
+            margin-top: 0;
+        }
+        .demo-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .demo-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alurete Design System - JSP/Spring Demo</h1>
+    <p>Esta página demonstra o uso dos componentes do Design System em HTML puro (JSP/Spring).</p>
+
+    <!-- Buttons -->
+    <div class="demo-section">
+        <h2>Buttons</h2>
+        <div class="demo-row">
+            <button class="ds-button ds-button--primary ds-button--small">Small Primary</button>
+            <button class="ds-button ds-button--primary ds-button--medium">Medium Primary</button>
+            <button class="ds-button ds-button--primary ds-button--large">Large Primary</button>
+        </div>
+        <div class="demo-row">
+            <button class="ds-button ds-button--secondary ds-button--medium">Secondary</button>
+            <button class="ds-button ds-button--ghost ds-button--medium">Ghost</button>
+            <button class="ds-button ds-button--link ds-button--medium">Link Button</button>
+        </div>
+        <div class="demo-row">
+            <button class="ds-button ds-button--primary ds-button--medium" disabled>Disabled</button>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="demo-section">
+        <h2>Alerts</h2>
+        <div class="demo-grid">
+            <div class="ds-alert ds-alert--success">
+                <div class="ds-alert__icon">✓</div>
+                <div class="ds-alert__content">
+                    <div class="ds-alert__title">Sucesso!</div>
+                    <div class="ds-alert__message">Sua operação foi concluída com sucesso.</div>
+                </div>
+            </div>
+
+            <div class="ds-alert ds-alert--error">
+                <div class="ds-alert__icon">✕</div>
+                <div class="ds-alert__content">
+                    <div class="ds-alert__title">Erro</div>
+                    <div class="ds-alert__message">Algo deu errado. Por favor, tente novamente.</div>
+                </div>
+            </div>
+
+            <div class="ds-alert ds-alert--warning">
+                <div class="ds-alert__icon">⚠</div>
+                <div class="ds-alert__content">
+                    <div class="ds-alert__title">Atenção</div>
+                    <div class="ds-alert__message">Esta ação não pode ser desfeita.</div>
+                </div>
+            </div>
+
+            <div class="ds-alert ds-alert--info">
+                <div class="ds-alert__icon">ℹ</div>
+                <div class="ds-alert__content">
+                    <div class="ds-alert__title">Informação</div>
+                    <div class="ds-alert__message">Você tem 3 novas notificações.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="demo-section">
+        <h2>Badges</h2>
+        <div class="demo-row">
+            <span class="ds-badge ds-badge--primary">Primary</span>
+            <span class="ds-badge ds-badge--secondary">Secondary</span>
+            <span class="ds-badge ds-badge--success">Success</span>
+            <span class="ds-badge ds-badge--error">Error</span>
+            <span class="ds-badge ds-badge--warning">Warning</span>
+            <span class="ds-badge ds-badge--info">Info</span>
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="demo-section">
+        <h2>Cards</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+            <div class="ds-card">
+                <div class="ds-card__header">
+                    <h3 class="ds-card__title">Card Padrão</h3>
+                    <p class="ds-card__description">Este é um card com estilo padrão</p>
+                </div>
+                <div class="ds-card__content">
+                    <p>Conteúdo do card vai aqui. Pode incluir texto, imagens, ou qualquer outro elemento HTML.</p>
+                </div>
+                <div class="ds-card__footer">
+                    <button class="ds-button ds-button--primary ds-button--small">Ação</button>
+                </div>
+            </div>
+
+            <div class="ds-card ds-card--secondary">
+                <div class="ds-card__header">
+                    <h3 class="ds-card__title">Card Secundário</h3>
+                    <p class="ds-card__description">Este card usa a variante secundária</p>
+                </div>
+                <div class="ds-card__content">
+                    <p>O card secundário tem uma cor de fundo diferente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="demo-section">
+        <h2>Inputs</h2>
+        <div style="max-width: 400px;">
+            <div class="ds-input-wrapper">
+                <label class="ds-input-label" for="email">Email</label>
+                <input type="email" id="email" class="ds-input" placeholder="seu@email.com">
+                <span class="ds-input-helper">Nunca compartilharemos seu email.</span>
+            </div>
+
+            <div class="ds-input-wrapper" style="margin-top: 1rem;">
+                <label class="ds-input-label" for="password">Senha</label>
+                <input type="password" id="password" class="ds-input ds-input--error" value="123">
+                <span class="ds-input-error">A senha deve ter pelo menos 8 caracteres.</span>
+            </div>
+
+            <div class="ds-input-wrapper" style="margin-top: 1rem;">
+                <label class="ds-input-label" for="disabled">Campo Desabilitado</label>
+                <input type="text" id="disabled" class="ds-input" value="Não editável" disabled>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="demo-section">
+        <h2>Dark Mode</h2>
+        <button class="ds-button ds-button--secondary ds-button--medium" onclick="toggleTheme()">
+            Alternar Tema
+        </button>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        }
+    </script>
+</body>
+</html>

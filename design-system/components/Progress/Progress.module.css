@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2-5);
+}
+
+/* ========================================
+   TRACK (background)
+   ======================================== */
+.track {
+  position: relative;
+  background-color: #ebf1ff;
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  flex: 1;
+}
+
+/* ========================================
+   FILL (progress bar)
+   ======================================== */
+.fill {
+  height: 100%;
+  background-color: var(--color-green-400);
+  border-radius: var(--border-radius-full);
+  transition: width 0.3s ease;
+}
+
+/* ========================================
+   SIZES
+   ======================================== */
+.small .track {
+  height: 8px;
+  max-width: 158px;
+}
+
+.large .track {
+  height: 8px;
+}
+
+/* ========================================
+   LABEL
+   ======================================== */
+.label {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-body);
+  line-height: 1.1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

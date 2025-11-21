@@ -1,0 +1,62 @@
+/**
+ * Input Component - Global CSS for JSP/Spring
+ * Use class: ds-input-wrapper, ds-input, ds-input--{state}
+ */
+
+.ds-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.ds-input-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-title);
+}
+
+.ds-input {
+    width: 100%;
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-sans);
+    color: var(--color-text-body);
+    background-color: var(--color-surface-interactive);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--border-radius);
+    transition: all 0.2s;
+}
+
+.ds-input:hover:not(:disabled) {
+    border-color: var(--color-border-selected);
+}
+
+.ds-input:focus {
+    outline: none;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.ds-input:disabled {
+    background-color: var(--color-surface-subtle);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.ds-input--error {
+    border-color: var(--color-feedback-error-default);
+}
+
+.ds-input--error:focus {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.ds-input-helper {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-body);
+}
+
+.ds-input-error {
+    font-size: var(--font-size-xs);
+    color: var(--color-feedback-error-default);
+}

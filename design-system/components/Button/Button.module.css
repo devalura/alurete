@@ -44,15 +44,15 @@
 }
 
 .primary:hover:not(:disabled) {
-  background-color: var(--color-interactive-primary-hover);
+  background-color: #1e40af;
 }
 
 .primary:active:not(:disabled) {
-  background-color: var(--color-interactive-primary-pressed);
+  background-color: #1e3a8a;
 }
 
 .primary:disabled {
-  background-color: var(--color-interactive-primary-disabled);
+  background-color: #93c5fd;
   cursor: not-allowed;
   opacity: 0.6;
 }

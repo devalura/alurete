@@ -1,0 +1,116 @@
+.radioWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.radioContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  position: relative;
+}
+
+.radioContainer.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radioCustom {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #c7d2fe;
+  border-radius: 9999px;
+  background-color: var(--color-white);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radioDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: var(--color-blue-400);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.2s ease;
+}
+
+/* Hover state */
+.radioContainer:not(.disabled):hover .radioCustom {
+  border-color: var(--color-blue-400);
+}
+
+/* Focus state */
+.radioInput:focus-visible + .radioCustom {
+  outline: 2px solid var(--color-blue-400);
+  outline-offset: 2px;
+}
+
+/* Checked state */
+.radioInput:checked + .radioCustom {
+  border-color: var(--color-blue-400);
+}
+
+.radioInput:checked + .radioCustom .radioDot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Disabled state */
+.radioContainer.disabled .radioCustom {
+  background-color: var(--color-gray-100);
+  border-color: var(--color-gray-300);
+}
+
+.radioLabel {
+  font-family: var(--font-title);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-body);
+  user-select: none;
+}
+
+.infoButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: var(--spacing-1);
+  cursor: pointer;
+  color: var(--color-body);
+  transition: color 0.2s ease;
+}
+
+.infoButton:hover {
+  color: var(--color-blue-400);
+}
+
+.auxiliaryButton {
+  font-family: var(--font-title);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-blue-400);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.auxiliaryButton:hover {
+  opacity: 0.8;
+}

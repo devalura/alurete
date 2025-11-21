@@ -1,0 +1,90 @@
+.button {
+  background-color: var(--color-brand-default);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  box-shadow: inset 0px 0px 10px 0px rgba(2, 6, 23, 0.3);
+  color: var(--color-text-on-brand);
+}
+
+/* Size variants */
+.small {
+  padding: 8px 8px 8px 24px;
+  gap: 14px;
+}
+
+.large {
+  padding: 8px 8px 8px 24px;
+  gap: 14px;
+}
+
+/* Device variants */
+.desktop.small .text {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.desktop.large .text,
+.mobile.large .text {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.mobile.small .text {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.text {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.playIcon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #1e40af;
+  transform: translateX(4px);
+}
+
+.button:active:not(:disabled) {
+  background-color: #1e3a8a;
+  transform: translateX(2px);
+}
+
+.button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-brand-default);
+  outline-offset: 2px;
+}

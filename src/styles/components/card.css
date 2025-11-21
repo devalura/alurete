@@ -1,0 +1,47 @@
+/**
+ * Card Component - Global CSS for JSP/Spring
+ * Use class: ds-card ds-card--{variant}
+ */
+
+.ds-card {
+    background-color: var(--card-surface);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+}
+
+.ds-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.ds-card--secondary {
+    background-color: var(--card-secondary);
+}
+
+.ds-card__header {
+    margin-bottom: var(--spacing-4);
+}
+
+.ds-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+    margin: 0;
+}
+
+.ds-card__description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-body);
+    margin: var(--spacing-2) 0 0 0;
+}
+
+.ds-card__content {
+    color: var(--color-text-body);
+}
+
+.ds-card__footer {
+    margin-top: var(--spacing-4);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--color-border-subtle);
+}

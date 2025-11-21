@@ -1,0 +1,84 @@
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 0.5px solid var(--color-border-default);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Size variants */
+.size24 {
+  width: 24px;
+  height: 24px;
+}
+
+.size32 {
+  width: 32px;
+  height: 32px;
+}
+
+.size40 {
+  width: 40px;
+  height: 40px;
+}
+
+.size110 {
+  width: 110px;
+  height: 110px;
+}
+
+/* Image */
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+/* Initials */
+.initials {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brand-default);
+  text-align: center;
+  letter-spacing: 0;
+}
+
+.avatar:not(:has(.image)) {
+  background-color: #e3f2fd;
+}
+
+.size24 .initials {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.size32 .initials {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.size40 .initials {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.size110 .initials {
+  font-size: 40px;
+  line-height: 44px;
+}
+
+/* Shadow for large size with image */
+.shadow {
+  position: absolute;
+  inset: -0.5px;
+  box-shadow: inset 0px 0px 10px 7px rgba(1, 12, 83, 0.4);
+  pointer-events: none;
+  border-radius: 9999px;
+}

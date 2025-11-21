@@ -1,0 +1,10 @@
+/**
+ * Alurete Design System - Global Components CSS
+ * This file imports all component styles for use in JSP/Spring applications
+ */
+
+@import './components/button.css';
+@import './components/card.css';
+@import './components/alert.css';
+@import './components/badge.css';
+@import './components/input.css';

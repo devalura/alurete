@@ -1,0 +1,56 @@
+/**
+ * Alert Component - Global CSS for JSP/Spring
+ * Use class: ds-alert ds-alert--{variant}
+ */
+
+.ds-alert {
+    padding: var(--spacing-4);
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-sm);
+}
+
+.ds-alert--success {
+    background-color: var(--color-feedback-success-surface);
+    color: var(--color-feedback-success-default);
+    border-left: 4px solid var(--color-feedback-success-default);
+}
+
+.ds-alert--error {
+    background-color: var(--color-feedback-error-surface);
+    color: var(--color-feedback-error-default);
+    border-left: 4px solid var(--color-feedback-error-default);
+}
+
+.ds-alert--warning {
+    background-color: var(--color-feedback-attention-surface);
+    color: var(--color-feedback-attention-default);
+    border-left: 4px solid var(--color-feedback-attention-default);
+}
+
+.ds-alert--info {
+    background-color: var(--color-feedback-info-surface);
+    color: var(--color-feedback-info-default);
+    border-left: 4px solid var(--color-feedback-info-default);
+}
+
+.ds-alert__icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.ds-alert__content {
+    flex: 1;
+}
+
+.ds-alert__title {
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--spacing-1) 0;
+}
+
+.ds-alert__message {
+    margin: 0;
+}

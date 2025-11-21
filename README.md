@@ -47,8 +47,15 @@ npm start
 
 - `npm run dev` - Inicia o servidor de desenvolvimento
 - `npm run build` - Cria build de produção
+- `npm run build:static` - Gera CSS bundle para JSP/Spring
 - `npm start` - Executa a aplicação em modo produção
 - `npm run lint` - Executa o linter
+
+## 📖 Documentação
+
+- **[GUIA-RAPIDO.md](./GUIA-RAPIDO.md)** - Guia completo de uso (JSP/Spring e React)
+- **[public/jsp-demo.html](./public/jsp-demo.html)** - Exemplos visuais dos componentes
+
 
 ## 🧩 Estrutura do Projeto
 

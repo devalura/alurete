@@ -1,0 +1,22 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Variant: Default (escuro) */
+.default .image {
+  filter: none;
+}
+
+/* Variant: Negative (branco) */
+.negative .image {
+  filter: brightness(0) invert(1);
+}

@@ -1,0 +1,196 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.labelWrapper {
+  display: flex;
+  gap: var(--spacing-1);
+  align-items: baseline;
+  margin-bottom: var(--spacing-0-5);
+}
+
+.label {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-title);
+  line-height: 1.5;
+}
+
+.optional {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-body);
+  line-height: 1.5;
+}
+
+/* ========================================
+   INPUT WRAPPER
+   ======================================== */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2-5);
+  background-color: var(--color-surface-interactive);
+  border: var(--border-width) solid var(--color-border-default);
+  border-radius: var(--border-radius-full);
+  transition: all 0.2s ease;
+}
+
+.inputWrapper:hover:not(.disabled) {
+  border-color: var(--color-border-selected);
+}
+
+.inputWrapper:focus-within:not(.disabled) {
+  border-color: var(--color-border-selected);
+  box-shadow: 0 0 0 1px var(--color-border-selected);
+}
+
+/* ========================================
+   INPUT ELEMENT
+   ======================================== */
+.input {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text-title);
+  font-family: var(--font-family-sans);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.input::placeholder {
+  color: var(--color-text-body);
+}
+
+.input:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ========================================
+   SIZES
+   ======================================== */
+.small {
+  height: 32px;
+  padding: 0 var(--spacing-4);
+}
+
+.small .input {
+  font-size: 13px;
+}
+
+.medium {
+  height: 40px;
+  padding: var(--spacing-2-5) var(--spacing-4);
+}
+
+.medium .input {
+  font-size: 13px;
+}
+
+.large {
+  height: 48px;
+  padding: 0 var(--spacing-4);
+}
+
+.large .input {
+  font-size: var(--font-size-base);
+}
+
+/* ========================================
+   ICONS
+   ======================================== */
+.leftIcon,
+.rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-icon-secondary);
+  flex-shrink: 0;
+}
+
+.leftIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.rightIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.hasLeftIcon .input {
+  padding-left: 0;
+}
+
+.hasRightIcon .input {
+  padding-right: 0;
+}
+
+/* ========================================
+   VARIANTS
+   ======================================== */
+.error {
+  border-color: var(--color-feedback-error-default);
+}
+
+.error:hover:not(.disabled),
+.error:focus-within:not(.disabled) {
+  border-color: var(--color-feedback-error-default);
+  box-shadow: 0 0 0 1px var(--color-feedback-error-default);
+}
+
+.success {
+  border-color: var(--color-feedback-success-default);
+}
+
+.success:hover:not(.disabled),
+.success:focus-within:not(.disabled) {
+  border-color: var(--color-feedback-success-default);
+  box-shadow: 0 0 0 1px var(--color-feedback-success-default);
+}
+
+/* ========================================
+   DISABLED STATE
+   ======================================== */
+.disabled {
+  background-color: var(--color-surface-subtle);
+  border-color: var(--color-border-subtle);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.disabled .leftIcon,
+.disabled .rightIcon {
+  color: var(--color-text-disabled);
+}
+
+/* ========================================
+   HELPER TEXT
+   ======================================== */
+.helperText {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-body);
+  line-height: 1.5;
+}
+
+.helperError {
+  color: var(--color-feedback-error-default);
+}
+
+.helperSuccess {
+  color: var(--color-feedback-success-default);
+}

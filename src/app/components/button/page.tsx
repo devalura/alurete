@@ -1,218 +1,235 @@
 'use client';
 
+import React, { useState } from 'react';
 import { Button } from '@/components/Button';
 import { IconButton } from '@/components/IconButton';
 import { SocialButton } from '@/components/SocialButton';
 import { PlayButton } from '@/components/PlayButton';
-import { PencilIcon, DownloadIcon, GoogleIcon, MicrosoftIcon, FacebookIcon, AppleIcon } from '@/components/Icons';
+import {
+  PencilIcon,
+  DownloadIcon,
+  GoogleIcon,
+  MicrosoftIcon,
+  FacebookIcon,
+  AppleIcon,
+  ArrowRightIcon,
+  PlusIcon,
+  TrashIcon,
+  SearchIcon,
+  SettingsIcon,
+  UserIcon,
+  MailIcon,
+  CheckIcon,
+  XIcon
+} from '@/components/Icons';
 import styles from './page.module.css';
 
+const ICONS_MAP: Record<string, React.ReactNode> = {
+  none: null,
+  download: <DownloadIcon />,
+  arrowRight: <ArrowRightIcon />,
+  plus: <PlusIcon />,
+  trash: <TrashIcon />,
+  search: <SearchIcon />,
+  settings: <SettingsIcon />,
+  user: <UserIcon />,
+  mail: <MailIcon />,
+  check: <CheckIcon />,
+  x: <XIcon />,
+  pencil: <PencilIcon />
+};
+
+const ICON_NAMES_MAP: Record<string, string> = {
+  none: 'None',
+  download: 'DownloadIcon',
+  arrowRight: 'ArrowRightIcon',
+  plus: 'PlusIcon',
+  trash: 'TrashIcon',
+  search: 'SearchIcon',
+  settings: 'SettingsIcon',
+  user: 'UserIcon',
+  mail: 'MailIcon',
+  check: 'CheckIcon',
+  x: 'XIcon',
+  pencil: 'PencilIcon'
+};
+
 export default function ButtonPage() {
+  const [variant, setVariant] = useState<'primary' | 'secondary' | 'ghost' | 'link'>('primary');
+  const [size, setSize] = useState<'small' | 'medium' | 'large'>('medium');
+  const [children, setChildren] = useState('Button Text');
+  const [disabled, setDisabled] = useState(false);
+  const [startIcon, setStartIcon] = useState('none');
+  const [endIcon, setEndIcon] = useState('none');
+  const [copied, setCopied] = useState(false);
+
+  const codeSnippet = `<Button
+  variant="${variant}"
+  size="${size}"${disabled ? '\n  disabled' : ''}${startIcon !== 'none' ? `\n  startIcon={<${ICON_NAMES_MAP[startIcon]} />}` : ''}${endIcon !== 'none' ? `\n  endIcon={<${ICON_NAMES_MAP[endIcon]} />}` : ''}
+>
+  ${children}
+</Button>`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeSnippet);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className={styles.page}>
       <div className={styles.header}>
         <h1>Button</h1>
         <p className={styles.description}>
           Componente de botão com múltiplas variantes, tamanhos e estados para diferentes contextos de uso.
+          Use o playground abaixo para customizar.
         </p>
       </div>
 
-      <section className={styles.section}>
-        <h2>Variantes</h2>
-        <p className={styles.hint}>
-          Botões possuem quatro variantes: <code>primary</code> para ações principais, <code>secondary</code> para ações secundárias, <code>ghost</code> para ações terciárias e <code>link</code> para navegação.
-        </p>
-        <div className={styles.componentGroup}>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <Button variant="primary">Primary Button</Button>
-              <span className={styles.label}>Primary</span>
+      <div className={styles.playground}>
+        <div className={styles.controls}>
+          <div className={styles.controlRow}>
+            <div className={styles.controlGroup}>
+              <label htmlFor="variant">Variante</label>
+              <select
+                id="variant"
+                value={variant}
+                onChange={(e) => setVariant(e.target.value as any)}
+                className={styles.select}
+              >
+                <option value="primary">Primary</option>
+                <option value="secondary">Secondary</option>
+                <option value="ghost">Ghost</option>
+                <option value="link">Link</option>
+              </select>
             </div>
-            <div className={styles.item}>
-              <Button variant="secondary">Secondary Button</Button>
-              <span className={styles.label}>Secondary</span>
+
+            <div className={styles.controlGroup}>
+              <label htmlFor="size">Tamanho</label>
+              <select
+                id="size"
+                value={size}
+                onChange={(e) => setSize(e.target.value as any)}
+                className={styles.select}
+              >
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </select>
             </div>
-            <div className={styles.item}>
-              <Button variant="ghost">Ghost Button</Button>
-              <span className={styles.label}>Ghost</span>
-            </div>
-            <div className={styles.item}>
-              <Button variant="link">Link Button</Button>
-              <span className={styles.label}>Link</span>
+
+            <div className={styles.controlGroup}>
+              <label htmlFor="children">Texto</label>
+              <input
+                id="children"
+                type="text"
+                value={children}
+                onChange={(e) => setChildren(e.target.value)}
+                className={styles.input}
+              />
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className={styles.section}>
-        <h2>Tamanhos</h2>
-        <p className={styles.hint}>
-          Três tamanhos disponíveis: <code>small</code>, <code>medium</code> (padrão) e <code>large</code>.
-        </p>
-        <div className={styles.componentGroup}>
-          <h3>Primary</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <Button variant="primary" size="small">Small</Button>
-              <span className={styles.label}>Small</span>
+          <div className={styles.controlRow}>
+            <div className={styles.controlGroup}>
+              <label className={styles.checkbox}>
+                <input
+                  type="checkbox"
+                  checked={startIcon !== 'none'}
+                  onChange={(e) => setStartIcon(e.target.checked ? 'download' : 'none')}
+                />
+                Ícone Esquerda
+              </label>
+              {startIcon !== 'none' && (
+                <select
+                  value={startIcon}
+                  onChange={(e) => setStartIcon(e.target.value)}
+                  className={styles.select}
+                >
+                  {Object.keys(ICON_NAMES_MAP).filter(k => k !== 'none').map(key => (
+                    <option key={key} value={key}>{ICON_NAMES_MAP[key]}</option>
+                  ))}
+                </select>
+              )}
             </div>
-            <div className={styles.item}>
-              <Button variant="primary" size="medium">Medium</Button>
-              <span className={styles.label}>Medium</span>
-            </div>
-            <div className={styles.item}>
-              <Button variant="primary" size="large">Large</Button>
-              <span className={styles.label}>Large</span>
-            </div>
-          </div>
-        </div>
 
-        <div className={styles.componentGroup}>
-          <h3>Secondary</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <Button variant="secondary" size="small">Small</Button>
-              <span className={styles.label}>Small</span>
+            <div className={styles.controlGroup}>
+              <label className={styles.checkbox}>
+                <input
+                  type="checkbox"
+                  checked={endIcon !== 'none'}
+                  onChange={(e) => setEndIcon(e.target.checked ? 'arrowRight' : 'none')}
+                />
+                Ícone Direita
+              </label>
+              {endIcon !== 'none' && (
+                <select
+                  value={endIcon}
+                  onChange={(e) => setEndIcon(e.target.value)}
+                  className={styles.select}
+                >
+                  {Object.keys(ICON_NAMES_MAP).filter(k => k !== 'none').map(key => (
+                    <option key={key} value={key}>{ICON_NAMES_MAP[key]}</option>
+                  ))}
+                </select>
+              )}
             </div>
-            <div className={styles.item}>
-              <Button variant="secondary" size="medium">Medium</Button>
-              <span className={styles.label}>Medium</span>
-            </div>
-            <div className={styles.item}>
-              <Button variant="secondary" size="large">Large</Button>
-              <span className={styles.label}>Large</span>
-            </div>
-          </div>
-        </div>
 
-        <div className={styles.componentGroup}>
-          <h3>Ghost</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <Button variant="ghost" size="small">Small</Button>
-              <span className={styles.label}>Small</span>
-            </div>
-            <div className={styles.item}>
-              <Button variant="ghost" size="medium">Medium</Button>
-              <span className={styles.label}>Medium</span>
-            </div>
-            <div className={styles.item}>
-              <Button variant="ghost" size="large">Large</Button>
-              <span className={styles.label}>Large</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <h2>Estados</h2>
-        <p className={styles.hint}>
-          Botões possuem estados visuais para hover, active, focus e disabled.
-        </p>
-        <div className={styles.componentGroup}>
-          <h3>Primary</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <Button variant="primary">Default</Button>
-              <span className={styles.label}>Default</span>
-            </div>
-            <div className={styles.item}>
-              <Button variant="primary" disabled>Disabled</Button>
-              <span className={styles.label}>Disabled</span>
+            <div className={`${styles.controlGroup} ${styles.auto}`}>
+              <label className={styles.checkbox} style={{ height: '100%', marginTop: '28px' }}>
+                <input
+                  type="checkbox"
+                  checked={disabled}
+                  onChange={(e) => setDisabled(e.target.checked)}
+                />
+                Disabled
+              </label>
             </div>
           </div>
         </div>
 
-        <div className={styles.componentGroup}>
-          <h3>Secondary</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <Button variant="secondary">Default</Button>
-              <span className={styles.label}>Default</span>
-            </div>
-            <div className={styles.item}>
-              <Button variant="secondary" disabled>Disabled</Button>
-              <span className={styles.label}>Disabled</span>
+        <div className={styles.previewArea}>
+          <div className={styles.previewHeader}>
+            Preview
+          </div>
+          <div className={styles.preview}>
+            <div className={styles.previewContent}>
+              <Button
+                variant={variant}
+                size={size}
+                disabled={disabled}
+                startIcon={ICONS_MAP[startIcon]}
+                endIcon={ICONS_MAP[endIcon]}
+              >
+                {children}
+              </Button>
             </div>
           </div>
-        </div>
 
-        <div className={styles.componentGroup}>
-          <h3>Ghost</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <Button variant="ghost">Default</Button>
-              <span className={styles.label}>Default</span>
+          <div className={styles.codeSection}>
+            <div className={styles.codeHeader}>
+              <div className={styles.windowControls}>
+                <div className={`${styles.dot} ${styles.dotRed}`} />
+                <div className={`${styles.dot} ${styles.dotYellow}`} />
+                <div className={`${styles.dot} ${styles.dotGreen}`} />
+              </div>
+              <button onClick={handleCopy} className={styles.copyButton}>
+                {copied ? 'Copiado!' : 'Copiar Código'}
+              </button>
             </div>
-            <div className={styles.item}>
-              <Button variant="ghost" disabled>Disabled</Button>
-              <span className={styles.label}>Disabled</span>
-            </div>
+            <pre className={styles.codeBlock}>
+              {codeSnippet}
+            </pre>
           </div>
         </div>
-      </section>
-
-
+      </div>
 
       <section className={styles.section}>
         <h2>Botões Apenas Ícone</h2>
         <p className={styles.hint}>
           Botões circulares que contêm apenas um ícone, ideais para toolbars e ações compactas.
         </p>
-
-        <div className={styles.componentGroup}>
-          <h3>Variantes</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <IconButton variant="primary" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>Primary</span>
-            </div>
-            <div className={styles.item}>
-              <IconButton variant="secondary" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>Secondary</span>
-            </div>
-            <div className={styles.item}>
-              <IconButton variant="ghost" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>Ghost</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.componentGroup}>
-          <h3>Tamanhos</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <IconButton size="xsmall" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>X-Small (16px)</span>
-            </div>
-            <div className={styles.item}>
-              <IconButton size="small" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>Small (24px)</span>
-            </div>
-            <div className={styles.item}>
-              <IconButton size="medium" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>Medium (32px)</span>
-            </div>
-            <div className={styles.item}>
-              <IconButton size="large" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>Large (42px)</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.componentGroup}>
-          <h3>Estados</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <IconButton variant="primary" icon={<PencilIcon />} label="Editar" />
-              <span className={styles.label}>Default</span>
-            </div>
-            <div className={styles.item}>
-              <IconButton variant="primary" icon={<PencilIcon />} label="Editar" disabled />
-              <span className={styles.label}>Disabled</span>
-            </div>
-          </div>
-        </div>
+        <IconButtonPlayground />
       </section>
 
       <section className={styles.section}>
@@ -220,41 +237,7 @@ export default function ButtonPage() {
         <p className={styles.hint}>
           Botões especiais para login/compartilhamento em redes sociais.
         </p>
-
-        <div className={styles.componentGroup}>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <SocialButton icon={<GoogleIcon />} label="Login com Google" />
-              <span className={styles.label}>Google</span>
-            </div>
-            <div className={styles.item}>
-              <SocialButton icon={<MicrosoftIcon />} label="Login com Microsoft" />
-              <span className={styles.label}>Microsoft</span>
-            </div>
-            <div className={styles.item}>
-              <SocialButton icon={<FacebookIcon />} label="Login com Facebook" />
-              <span className={styles.label}>Facebook</span>
-            </div>
-            <div className={styles.item}>
-              <SocialButton icon={<AppleIcon />} label="Login com Apple" />
-              <span className={styles.label}>Apple</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.componentGroup}>
-          <h3>Estados</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <SocialButton icon={<GoogleIcon />} label="Login com Google" />
-              <span className={styles.label}>Default</span>
-            </div>
-            <div className={styles.item}>
-              <SocialButton icon={<GoogleIcon />} label="Login com Google" disabled />
-              <span className={styles.label}>Disabled</span>
-            </div>
-          </div>
-        </div>
+        <SocialButtonPlayground />
       </section>
 
       <section className={styles.section}>
@@ -262,31 +245,308 @@ export default function ButtonPage() {
         <p className={styles.hint}>
           Botões especiais com ícone de play, ideais para conteúdo de vídeo.
         </p>
-
-        <div className={styles.componentGroup}>
-          <h3>Tamanhos e Devices</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <PlayButton size="small" device="desktop">Ver primeiro vídeo</PlayButton>
-              <span className={styles.label}>Small Desktop</span>
-            </div>
-            <div className={styles.item}>
-              <PlayButton size="large" device="desktop">Continuar de onde parou</PlayButton>
-              <span className={styles.label}>Large Desktop</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.componentGroup}>
-          <h3>Mobile</h3>
-          <div className={styles.row}>
-            <div className={styles.item}>
-              <PlayButton size="large" device="mobile">Continuar de onde parou</PlayButton>
-              <span className={styles.label}>Large Mobile</span>
-            </div>
-          </div>
-        </div>
+        <PlayButtonPlayground />
       </section>
+    </div>
+  );
+}
+
+function IconButtonPlayground() {
+  const [variant, setVariant] = useState<'primary' | 'secondary' | 'ghost'>('primary');
+  const [size, setSize] = useState<'xsmall' | 'small' | 'medium' | 'large'>('medium');
+  const [icon, setIcon] = useState('pencil');
+  const [disabled, setDisabled] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const codeSnippet = `<IconButton
+  variant="${variant}"
+  size="${size}"
+  icon={<${ICON_NAMES_MAP[icon]} />}${disabled ? '\n  disabled' : ''}
+/>`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeSnippet);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className={styles.playground}>
+      <div className={styles.controls}>
+        <div className={styles.controlRow}>
+          <div className={styles.controlGroup}>
+            <label htmlFor="iconBtnVariant">Variante</label>
+            <select
+              id="iconBtnVariant"
+              value={variant}
+              onChange={(e) => setVariant(e.target.value as any)}
+              className={styles.select}
+            >
+              <option value="primary">Primary</option>
+              <option value="secondary">Secondary</option>
+              <option value="ghost">Ghost</option>
+            </select>
+          </div>
+
+          <div className={styles.controlGroup}>
+            <label htmlFor="iconBtnSize">Tamanho</label>
+            <select
+              id="iconBtnSize"
+              value={size}
+              onChange={(e) => setSize(e.target.value as any)}
+              className={styles.select}
+            >
+              <option value="xsmall">X-Small</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+
+          <div className={styles.controlGroup}>
+            <label htmlFor="iconBtnIcon">Ícone</label>
+            <select
+              id="iconBtnIcon"
+              value={icon}
+              onChange={(e) => setIcon(e.target.value)}
+              className={styles.select}
+            >
+              {Object.keys(ICON_NAMES_MAP).filter(k => k !== 'none').map(key => (
+                <option key={key} value={key}>{ICON_NAMES_MAP[key]}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className={`${styles.controlGroup} ${styles.auto}`}>
+            <label className={styles.checkbox} style={{ height: '100%', marginTop: '28px' }}>
+              <input
+                type="checkbox"
+                checked={disabled}
+                onChange={(e) => setDisabled(e.target.checked)}
+              />
+              Disabled
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.previewArea}>
+        <div className={styles.previewHeader}>Preview</div>
+        <div className={styles.preview}>
+          <div className={styles.previewContent}>
+            <IconButton
+              variant={variant}
+              size={size}
+              icon={ICONS_MAP[icon]}
+              disabled={disabled}
+              aria-label="Exemplo de botão ícone"
+            />
+          </div>
+        </div>
+
+        <div className={styles.codeSection}>
+          <div className={styles.codeHeader}>
+            <div className={styles.windowControls}>
+              <div className={`${styles.dot} ${styles.dotRed}`} />
+              <div className={`${styles.dot} ${styles.dotYellow}`} />
+              <div className={`${styles.dot} ${styles.dotGreen}`} />
+            </div>
+            <button onClick={handleCopy} className={styles.copyButton}>
+              {copied ? 'Copiado!' : 'Copiar Código'}
+            </button>
+          </div>
+          <pre className={styles.codeBlock}>{codeSnippet}</pre>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SocialButtonPlayground() {
+  const [icon, setIcon] = useState('google');
+  const [disabled, setDisabled] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const SOCIAL_ICONS_MAP: Record<string, React.ReactNode> = {
+    google: <GoogleIcon />,
+    microsoft: <MicrosoftIcon />,
+    facebook: <FacebookIcon />,
+    apple: <AppleIcon />
+  };
+
+  const SOCIAL_ICON_NAMES: Record<string, string> = {
+    google: 'GoogleIcon',
+    microsoft: 'MicrosoftIcon',
+    facebook: 'FacebookIcon',
+    apple: 'AppleIcon'
+  };
+
+  const LABELS: Record<string, string> = {
+    google: 'Login com Google',
+    microsoft: 'Login com Microsoft',
+    facebook: 'Login com Facebook',
+    apple: 'Login com Apple'
+  };
+
+  const codeSnippet = `<SocialButton
+  icon={<${SOCIAL_ICON_NAMES[icon]} />}
+  label="${LABELS[icon]}"${disabled ? '\n  disabled' : ''}
+/>`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeSnippet);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className={styles.playground}>
+      <div className={styles.controls}>
+        <div className={styles.controlRow}>
+          <div className={styles.controlGroup}>
+            <label htmlFor="socialBtnIcon">Rede Social</label>
+            <select
+              id="socialBtnIcon"
+              value={icon}
+              onChange={(e) => setIcon(e.target.value)}
+              className={styles.select}
+            >
+              <option value="google">Google</option>
+              <option value="microsoft">Microsoft</option>
+              <option value="facebook">Facebook</option>
+              <option value="apple">Apple</option>
+            </select>
+          </div>
+
+          <div className={`${styles.controlGroup} ${styles.auto}`}>
+            <label className={styles.checkbox} style={{ height: '100%', marginTop: '28px' }}>
+              <input
+                type="checkbox"
+                checked={disabled}
+                onChange={(e) => setDisabled(e.target.checked)}
+              />
+              Disabled
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.previewArea}>
+        <div className={styles.previewHeader}>Preview</div>
+        <div className={styles.preview}>
+          <div className={styles.previewContent}>
+            <SocialButton
+              icon={SOCIAL_ICONS_MAP[icon]}
+              label={LABELS[icon]}
+              disabled={disabled}
+            />
+          </div>
+        </div>
+
+        <div className={styles.codeSection}>
+          <div className={styles.codeHeader}>
+            <div className={styles.windowControls}>
+              <div className={`${styles.dot} ${styles.dotRed}`} />
+              <div className={`${styles.dot} ${styles.dotYellow}`} />
+              <div className={`${styles.dot} ${styles.dotGreen}`} />
+            </div>
+            <button onClick={handleCopy} className={styles.copyButton}>
+              {copied ? 'Copiado!' : 'Copiar Código'}
+            </button>
+          </div>
+          <pre className={styles.codeBlock}>{codeSnippet}</pre>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PlayButtonPlayground() {
+  const [size, setSize] = useState<'small' | 'large'>('large');
+  const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
+  const [children, setChildren] = useState('Continuar de onde parou');
+  const [copied, setCopied] = useState(false);
+
+  const codeSnippet = `<PlayButton
+  size="${size}"
+  device="${device}"
+>
+  ${children}
+</PlayButton>`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeSnippet);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className={styles.playground}>
+      <div className={styles.controls}>
+        <div className={styles.controlRow}>
+          <div className={styles.controlGroup}>
+            <label htmlFor="playBtnSize">Tamanho</label>
+            <select
+              id="playBtnSize"
+              value={size}
+              onChange={(e) => setSize(e.target.value as any)}
+              className={styles.select}
+            >
+              <option value="small">Small</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+
+          <div className={styles.controlGroup}>
+            <label htmlFor="playBtnDevice">Dispositivo</label>
+            <select
+              id="playBtnDevice"
+              value={device}
+              onChange={(e) => setDevice(e.target.value as any)}
+              className={styles.select}
+            >
+              <option value="desktop">Desktop</option>
+              <option value="mobile">Mobile</option>
+            </select>
+          </div>
+
+          <div className={styles.controlGroup}>
+            <label htmlFor="playBtnText">Texto</label>
+            <input
+              id="playBtnText"
+              type="text"
+              value={children}
+              onChange={(e) => setChildren(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.previewArea}>
+        <div className={styles.previewHeader}>Preview</div>
+        <div className={styles.preview}>
+          <div className={styles.previewContent}>
+            <PlayButton size={size} device={device}>
+              {children}
+            </PlayButton>
+          </div>
+        </div>
+
+        <div className={styles.codeSection}>
+          <div className={styles.codeHeader}>
+            <div className={styles.windowControls}>
+              <div className={`${styles.dot} ${styles.dotRed}`} />
+              <div className={`${styles.dot} ${styles.dotYellow}`} />
+              <div className={`${styles.dot} ${styles.dotGreen}`} />
+            </div>
+            <button onClick={handleCopy} className={styles.copyButton}>
+              {copied ? 'Copiado!' : 'Copiar Código'}
+            </button>
+          </div>
+          <pre className={styles.codeBlock}>{codeSnippet}</pre>
+        </div>
+      </div>
     </div>
   );
 }

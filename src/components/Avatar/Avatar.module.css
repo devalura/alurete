@@ -1,84 +1,104 @@
 .avatar {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  border: 0.5px solid var(--color-border-default);
-  overflow: hidden;
-  flex-shrink: 0;
+    position: relative;
+    border-radius: var(--radius-pill, 9999px);
+    border: 0.5px solid var(--color-border-default, #c7d2fe);
+    box-sizing: border-box;
 }
 
-/* Size variants */
+.hasBackground {
+    background-color: #e3f2fd;
+}
+
+/* Sizes */
 .size24 {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .size32 {
-  width: 32px;
-  height: 32px;
+    width: 32px;
+    height: 32px;
 }
 
 .size40 {
-  width: 40px;
-  height: 40px;
+    width: 40px;
+    height: 40px;
 }
 
 .size110 {
-  width: 110px;
-  height: 110px;
+    width: 110px;
+    height: 110px;
 }
 
 /* Image */
 .image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    border-radius: var(--radius-pill, 9999px);
+    width: 100%;
+    height: 100%;
 }
 
-/* Initials */
+/* Initials Text */
 .initials {
-  font-family: var(--font-family-sans);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-brand-default);
-  text-align: center;
-  letter-spacing: 0;
+    position: absolute;
+    font-family: var(--font-family-sans, 'Open_Sans:Regular', sans-serif);
+    font-weight: var(--font-weight-font-medium, 500);
+    color: var(--color-brand-default, #1d4ed8);
+    text-align: center;
+    letter-spacing: var(--letter-spacing-tracking-normal, 0px);
+    transform: translateX(-50%);
 }
 
-.avatar:not(:has(.image)) {
-  background-color: var(--color-blue-100);
+/* Text Sizes/Positions */
+.text24 {
+    font-size: 12px;
+    line-height: 16px;
+    height: 18px;
+    width: 24px;
+    left: 12px;
+    top: 3px;
 }
 
-.size24 .initials {
-  font-size: 12px;
-  line-height: 16px;
+.text32 {
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    width: 32px;
+    left: 16px;
+    top: 6px;
 }
 
-.size32 .initials {
-  font-size: 14px;
-  line-height: 18px;
+.text40 {
+    font-size: 16px;
+    line-height: 24px;
+    height: 24px;
+    width: 40px;
+    left: 20px;
+    top: 8px;
 }
 
-.size40 .initials {
-  font-size: 16px;
-  line-height: 20px;
+.text110 {
+    font-size: 48px;
+    line-height: 40px;
+    height: 54px;
+    width: 110px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.size110 .initials {
-  font-size: 40px;
-  line-height: 44px;
-}
-
-/* Shadow for large size with image */
-.shadow {
-  position: absolute;
-  inset: -0.5px;
-  box-shadow: inset 0px 0px 10px 7px rgba(1, 12, 83, 0.4);
-  pointer-events: none;
-  border-radius: 9999px;
+/* Overlay */
+.overlay {
+    position: absolute;
+    inset: -0.5px;
+    box-shadow: 0px 0px 10px 7px inset rgba(1, 12, 83, 0.4);
+    border-radius: var(--radius-pill, 9999px);
 }

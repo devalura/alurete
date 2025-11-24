@@ -27,6 +27,7 @@ const menuItems: MenuItem[] = [
       { title: 'Avatar', href: '/components/avatar' },
       { title: 'Button', href: '/components/button' },
       { title: 'Checkbox', href: '/components/checkbox' },
+      { title: 'Icons', href: '/components/icons' },
       { title: 'Input', href: '/components/input' },
       { title: 'Progress', href: '/components/progress' },
       { title: 'Radio', href: '/components/radio' },
@@ -42,15 +43,9 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    title: 'Componentes de Mídia',
-    items: [
-      { title: 'Banner', href: '/components/banner' },
-      { title: 'Icons', href: '/components/icons' },
-    ],
-  },
-  {
     title: 'Componentes Específicos',
     items: [
+      { title: 'Banner', href: '/components/banner' },
       { title: 'ExerciseOption', href: '/components/exercise-option' },
       { title: 'LessonHeader', href: '/components/lesson-header' },
     ],

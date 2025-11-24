@@ -19,6 +19,19 @@
 }
 
 /* ========================================
+   BORDER VARIANTS
+   ======================================== */
+.border-default {
+  border-color: var(--color-border-default);
+}
+
+.border-subtle {
+  border-color: var(--color-blue-100);
+  border-width: 1px;
+  /* Keeping 1px for consistency, but lighter color */
+}
+
+/* ========================================
    PADDING
    ======================================== */
 .padding-none {

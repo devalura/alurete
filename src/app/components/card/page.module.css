@@ -1,97 +1,643 @@
-.container {
-  padding: var(--spacing-8);
-  max-width: 1400px;
-  margin: 0 auto;
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-8) var(--spacing-6);
 }
 
 .header {
-  margin-bottom: var(--spacing-10);
+    margin-bottom: var(--spacing-10);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 .header h1 {
-  font-family: var(--font-title);
-  font-size: var(--font-size-4xl);
-  font-weight: 700;
-  color: var(--color-brand);
-  margin: 0 0 var(--spacing-4) 0;
-}
-
-.header p {
-  font-family: var(--font-body);
-  font-size: var(--font-size-lg);
-  color: var(--color-body);
-  margin: 0;
-}
-
-.section {
-  margin-bottom: var(--spacing-12);
-}
-
-.section h2 {
-  font-family: var(--font-title);
-  font-size: var(--font-size-2xl);
-  font-weight: 600;
-  color: var(--color-body);
-  margin: 0 0 var(--spacing-6) 0;
+    font-family: var(--font-family-brand);
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-4);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .description {
-  font-family: var(--font-body);
-  font-size: var(--font-size-sm);
-  color: var(--color-gray-600);
-  margin: 0 0 var(--spacing-4) 0;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-body);
 }
 
-.examples {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-6);
-  padding: var(--spacing-6);
-  background-color: var(--color-gray-50);
-  border-radius: var(--border-radius-lg);
+.playground {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+    background: #fff;
+    border-radius: var(--border-radius-xl);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    border: 1px solid var(--color-border-subtle);
+    margin-bottom: var(--spacing-12);
 }
 
-.careerGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(214px, 1fr));
-  gap: var(--spacing-6);
-  padding: var(--spacing-6);
-  background-color: var(--color-gray-50);
-  border-radius: var(--border-radius-lg);
+.controls {
+    background-color: #f8fafc;
+    padding: var(--spacing-6) var(--spacing-8);
+    border-bottom: 1px solid var(--color-border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
 }
 
-.specs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-6);
-  padding: var(--spacing-6);
-  background-color: var(--color-gray-50);
-  border-radius: var(--border-radius-lg);
+.controlRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-6);
+    width: 100%;
 }
 
-.specItem {
-  padding: var(--spacing-6);
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-md);
+.controlGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    min-width: 200px;
+    flex: 1;
 }
 
-.specItem h3 {
-  font-family: var(--font-title);
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: var(--color-body);
-  margin: 0 0 var(--spacing-4) 0;
+.controlGroup.auto {
+    flex: 0 0 auto;
+    min-width: auto;
+    justify-content: center;
 }
 
-.specItem ul {
-  margin: 0;
-  padding-left: var(--spacing-5);
-  font-family: var(--font-body);
-  font-size: var(--font-size-sm);
-  color: var(--color-gray-700);
-  line-height: 1.8;
+.controlGroup label {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
 }
 
-.specItem li {
-  margin-bottom: var(--spacing-2);
+.radioGroup {
+    display: flex;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-body);
+    cursor: pointer;
+}
+
+.select,
+.input,
+.range {
+    padding: var(--spacing-2-5) var(--spacing-3);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    background-color: white;
+    width: 100%;
+    transition: all 0.2s;
+    color: var(--color-text-heading);
+    height: 42px;
+}
+
+.range {
+    padding: 0;
+    height: auto;
+}
+
+.select:focus,
+.input:focus {
+    outline: none;
+    border-color: var(--color-brand-default);
+    box-shadow: 0 0 0 3px var(--color-brand-subtle);
+}
+
+.checkbox {
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-heading);
+    user-select: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    margin-bottom: 0;
+}
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-brand-default);
+}
+
+.previewArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.previewHeader {
+    padding: var(--spacing-3) var(--spacing-8);
+    background: white;
+    border-bottom: 1px solid var(--color-border-subtle);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview {
+    padding: var(--spacing-16);
+    background-color: #ffffff;
+    background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+    background-size: 20px 20px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.previewContent {
+    filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.05));
+    display: flex;
+    justify-content: center;
+}
+
+.codeSection {
+    background-color: #0f172a;
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+.codeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-3) var(--spacing-4);
+    border-bottom: 1px solid #1e293b;
+    background: #1e293b;
+}
+
+.windowControls {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dotRed {
+    background-color: #ef4444;
+}
+
+.dotYellow {
+    background-color: #f59e0b;
+}
+
+.dotGreen {
+    background-color: #10b981;
+}
+
+.copyButton {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    font-size: var(--font-size-xs);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copyButton:hover {
+    background: #334155;
+    color: white;
+}
+
+.codeBlock {
+    color: #e2e8f0;
+    padding: var(--spacing-6);
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: var(--font-size-sm);
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .controlRow {
+        flex-direction: column;
+        gap: var(--spacing-4);
+    }
+
+}
+
+.genericCardText {
+    color: #475569;
+}
+
+.genericCardHeader {
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+}
+
+.genericCardAction {
+    font-size: var(--font-size-sm);
+    color: #2563eb;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Course Progress Card */
+.courseCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    padding: var(--spacing-5) var(--spacing-5) var(--spacing-6);
+    width: 100%;
+}
+
+.courseTitleSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.courseLabel {
+    font-size: var(--font-size-xs);
+    color: #64748b;
+    text-transform: uppercase;
+    font-family: var(--font-family-brand);
+    line-height: 1;
+}
+
+.courseTitle {
+    font-size: var(--font-size-xl);
+    color: #64748b;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.courseTitleStrong {
+    color: #334155;
+    font-weight: 700;
+}
+
+.courseSubtitle {
+    font-weight: 400;
+    font-size: var(--font-size-base);
+}
+
+.courseActionSection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+}
+
+.courseStatus {
+    font-size: var(--font-size-sm);
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.courseStatusLabel {
+    font-weight: 700;
+    color: #1d4ed8;
+}
+
+/* Evaluation Card */
+.evaluationCardContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 var(--spacing-4);
+}
+
+.evaluationHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    margin-bottom: var(--spacing-6);
+}
+
+.evaluationLabel {
+    font-family: var(--font-family-brand);
+    font-size: var(--font-size-xs);
+    color: #64748b;
+    text-transform: uppercase;
+    line-height: 1.25;
+}
+
+.evaluationTag {
+    background-color: #f8fafc;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-family: var(--font-family-brand);
+    font-size: var(--font-size-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.previewContent {
+    filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.05));
+    display: flex;
+    justify-content: center;
+}
+
+.codeSection {
+    background-color: #0f172a;
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+.codeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-3) var(--spacing-4);
+    border-bottom: 1px solid #1e293b;
+    background: #1e293b;
+}
+
+.windowControls {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dotRed {
+    background-color: #ef4444;
+}
+
+.dotYellow {
+    background-color: #f59e0b;
+}
+
+.dotGreen {
+    background-color: #10b981;
+}
+
+.copyButton {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    font-size: var(--font-size-xs);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copyButton:hover {
+    background: #334155;
+    color: white;
+}
+
+.codeBlock {
+    color: #e2e8f0;
+    padding: var(--spacing-6);
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: var(--font-size-sm);
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .controlRow {
+        flex-direction: column;
+        gap: var(--spacing-4);
+    }
+
+}
+
+.genericCardText {
+    color: #475569;
+}
+
+.genericCardHeader {
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+}
+
+.genericCardAction {
+    font-size: var(--font-size-sm);
+    color: #2563eb;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Course Progress Card */
+.courseCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    padding: var(--spacing-5) var(--spacing-5) var(--spacing-6);
+    width: 100%;
+}
+
+.courseTitleSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.courseLabel {
+    font-size: var(--font-size-xs);
+    color: #64748b;
+    text-transform: uppercase;
+    font-family: var(--font-family-brand);
+    line-height: 1;
+}
+
+.courseTitle {
+    font-size: var(--font-size-xl);
+    color: #64748b;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.courseTitleStrong {
+    color: #334155;
+    font-weight: 700;
+}
+
+.courseSubtitle {
+    font-weight: 400;
+    font-size: var(--font-size-base);
+}
+
+.courseActionSection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+}
+
+.courseStatus {
+    font-size: var(--font-size-sm);
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.courseStatusLabel {
+    font-weight: 700;
+    color: #1d4ed8;
+}
+
+/* Evaluation Card */
+.evaluationCardContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 var(--spacing-4);
+}
+
+.evaluationHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    margin-bottom: var(--spacing-6);
+}
+
+.evaluationLabel {
+    font-family: var(--font-family-brand);
+    font-size: var(--font-size-xs);
+    color: #64748b;
+    text-transform: uppercase;
+    line-height: 1.25;
+}
+
+.evaluationTag {
+    background-color: #f8fafc;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-family: var(--font-family-brand);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: #334155;
+    text-align: center;
+}
+
+.evaluationTitle {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: #334155;
+    line-height: 1.5;
+    margin-bottom: var(--spacing-8);
+    min-height: 72px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.evaluationButton {
+    width: 100%;
+    margin-bottom: var(--spacing-6);
+}
+
+/* Career Card */
+.careerCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: var(--spacing-3) var(--spacing-3) var(--spacing-6);
+    width: 100%;
+}
+
+.careerImage {
+    width: 100%;
+    height: 148px;
+    background: linear-gradient(to bottom right, #cbd5e1, #94a3b8);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+
+.careerLockedOverlay {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+}
+
+.careerLockIcon {
+    width: 32px;
+    height: 32px;
+    background-color: #f472b6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.careerInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.careerType {
+    font-family: var(--font-family-brand);
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #64748b;
+    line-height: 1.25;
+}
+
+.careerTitle {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: #334155;
+    line-height: 1.375;
 }

@@ -1,143 +1,162 @@
 # Alurete Design System
 
-Sistema de design da Alura com componentes prontos para usar em aplicações **JSP/Spring** e **React/Next.js**.
+Sistema de design da Alura para aplicações **Java/Spring/JSP**.
 
 ---
 
-## 📍 Navegação Rápida
+## 🚀 Quick Start
 
-- 🎯 [Para Desenvolvedores Spring](#-para-desenvolvedores-spring-você)
-- 🎨 [Para Product Designers](#-para-product-designers)
-- ⚛️ [Para Desenvolvedores Front-end](#️-para-desenvolvedores-front-end-reactnextjs)
-
----
-
-
-## 🎯 Para Desenvolvedores Spring (você!)
-
-### Setup Rápido (2 minutos)
-
-1. **Baixe o CSS pronto:**
-   ```bash
-   # Peça ao time de front-end ou baixe de:
-   # dist/alurete-design-system.css
-   ```
-
-2. **Coloque no seu projeto Spring:**
-   ```
-   src/main/resources/static/css/alurete-design-system.css
-   ```
-
-3. **Adicione no seu JSP/template:**
-   ```jsp
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/alurete-design-system.css">
-   ```
-
-4. **Pronto! Use os componentes:**
-   ```html
-   <button class="ds-button ds-button--primary ds-button--medium">
-       Salvar
-   </button>
-   ```
-
-### 📖 Documentação Completa
-
-- **[GUIA-RAPIDO.md](./GUIA-RAPIDO.md)** - Todos os componentes com exemplos
-- **[public/jsp-demo.html](./public/jsp-demo.html)** - Abra no navegador para ver exemplos visuais
-
-### 🔄 Atualizando o CSS
-
-Quando o time de front-end atualizar o design system:
-1. Receba o novo `alurete-design-system.css`
-2. Substitua o arquivo em `static/css/`
-3. Limpe o cache do navegador (Ctrl+Shift+R)
-
----
-
-## 🎨 Para Product Designers
-
-### Ver os Componentes Visuais
-
-1. **Abra no navegador:** `public/jsp-demo.html`
-   - Veja todos os componentes renderizados
-   - Teste dark mode
-   - Copie o HTML se precisar
-
-2. **Tokens de Design:**
-   - **Cores:** Veja em `src/styles/tokens.css` (linhas 204-275)
-   - **Espaçamento:** 8px, 16px, 24px, 32px... (múltiplos de 8)
-   - **Tipografia:** Open Sans (corpo), Chakra Petch (títulos)
-   - **Bordas:** 4px, 8px, 12px, 16px, 24px, pill (9999px)
-
-### Propor Mudanças
-
-**Quer mudar uma cor/espaçamento/componente?**
-1. **Discuta a mudança** com o time
-2. **Faça a alteração no Figma** (projeto Alurete)
-   - Mude as variáveis lá
-   - Atualize os componentes
-3. **Exporte os tokens:** `design-tokens.json` do Figma usando o plugin "Alurete Exporta JSON" (disponível no Notion de PD)
-4. **Importe aqui:** Substitua o `design-tokens.json` na raiz do projeto
-5. **Avise o time de dev** para atualizar o CSS
-
-### Workflow de Sincronização
-
-```
-Figma (Alurete) → design-tokens.json → Design System (código)
-     ↓                    ↓                      ↓
-  Variáveis          Exportar              Importar
-  Componentes                            npm run build:static
+### 1. Gere os artifacts
+```bash
+npm run build:artifacts
 ```
 
-**Importante:** O Figma é a **fonte da verdade**. Sempre atualize lá primeiro!
+### 2. Copie para o seu projeto Spring
+```
+src/main/resources/static/assets/css/alurete/
+├── core.css              # ⚠️ Obrigatório
+└── components/           # Opcional (sob demanda)
+    ├── button.css
+    ├── card.css
+    └── ...
+```
 
-### Checklist de Design
+### 3. Importe no JSP
 
-Ao criar componentes no Figma (Alurete), use:
-- ✅ Variáveis do Figma (não valores hardcoded)
-- ✅ Espaçamento em múltiplos de 8px
-- ✅ Fontes: Open Sans ou Chakra Petch
-- ✅ Border radius: 4, 8, 12, 16, 24 ou pill
-- ✅ Estados: default, hover, active, disabled, error
+**Opção A: Modular (Recomendado)**
+```jsp
+<!-- Core (obrigatório) -->
+<link rel="stylesheet" href="/assets/css/alurete/core.css">
 
+<!-- Componentes (só o que você usa) -->
+<link rel="stylesheet" href="/assets/css/alurete/components/button.css">
+<link rel="stylesheet" href="/assets/css/alurete/components/card.css">
+```
+
+**Opção B: Bundle completo**
+```jsp
+<link rel="stylesheet" href="/assets/css/alurete/alurete-full.css">
+```
+
+### 4. Use os componentes
+```html
+<button class="Button-button Button-primary Button-medium">
+    Salvar
+</button>
+
+<div class="Card-card Card-default Card-padding-medium">
+    <div class="Card-content">
+        Conteúdo aqui
+    </div>
+</div>
+```
 
 ---
 
-## ⚛️ Para Desenvolvedores Front-end (React/Next.js)
+## 📋 Componentes Disponíveis
 
-### Rodar o projeto
+| Componente | CSS | Tamanho | Exemplo |
+|------------|-----|---------|---------|
+| Button | `components/button.css` | 3.2 KB | `Button-button Button-primary Button-medium` |
+| Card | `components/card.css` | 2.5 KB | `Card-card Card-default Card-padding-medium` |
+| Input | `components/input.css` | 4.4 KB | `Input-input Input-medium` |
+| Alert | `components/alert.css` | 2.0 KB | `Alert-alert Alert-success` |
+| Tag | `components/tag.css` | 1.6 KB | `Tag-tag Tag-primary Tag-small` |
+
+**Nota:** Todos dependem de `core.css` (16 KB).
+
+---
+
+## 🎯 Integração com Spring MVC
+
+### Formulários
+```jsp
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<div class="form-group">
+    <form:label path="email" cssClass="text-sm font-bold">Email</form:label>
+    <form:input path="email" 
+                cssClass="Input-input Input-medium ${status.error ? 'Input-error' : ''}" />
+    <form:errors path="email" cssClass="text-red-600 text-xs mt-1" />
+</div>
+```
+
+### Listas com JSTL
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:forEach items="${cursos}" var="curso">
+    <div class="Card-card Card-default Card-padding-small">
+        <h3><c:out value="${curso.nome}" /></h3>
+        <span class="Tag-tag Tag-primary Tag-small">${curso.categoria}</span>
+    </div>
+</c:forEach>
+```
+
+### Mensagens Flash
+```jsp
+<c:if test="${not empty mensagemSucesso}">
+    <div class="Alert-alert Alert-success">
+        <div class="Alert-content">
+            <p class="Alert-message"><c:out value="${mensagemSucesso}" /></p>
+        </div>
+    </div>
+</c:if>
+```
+
+---
+
+## 🗂️ Templates Prontos
+
+Consulte `dist/jsp-templates/` para snippets completos:
+
+- **`components/`** - Componentes isolados (Button, Input, Card...)
+- **`patterns/`** - Padrões compostos (LoginForm, Pagination)
+- **`examples/`** - Páginas completas (DashboardLayout)
+
+**Exemplo:** Copie `dist/jsp-templates/patterns/LoginForm.jsp` para ter um formulário de login pronto.
+
+---
+
+## 🔧 Troubleshooting
+
+### CSS não carrega (404)
+- ✅ Verifique se a pasta está em `src/main/resources/static/assets/css/alurete/`
+- ✅ Confirme que o caminho no `<link>` começa com `/assets/`
+- ✅ Se usar Spring Security, libere `/assets/**` nas regras
+
+### Classes não aplicam estilo
+- ✅ Importe `core.css` **antes** dos componentes
+- ✅ Verifique se não há CSS legado sobrescrevendo (use Inspecionar Elemento)
+
+### Ícones não aparecem
+- O Alurete não inclui ícones. Use **Lucide Icons** ou **FontAwesome**:
+  ```html
+  <button class="Button-button Button-primary Button-medium">
+      <i class="fa fa-save"></i> Salvar
+  </button>
+  ```
+
+---
+
+## 📖 Documentação Completa
+
+- **[dist/GUIA-INTEGRACAO-JSP.md](./dist/GUIA-INTEGRACAO-JSP.md)** - Guia técnico detalhado
+- **[dist/index.html](./dist/index.html)** - Catálogo visual (abra no navegador)
+- **[dist/jsp-templates/](./dist/jsp-templates/)** - Biblioteca de snippets
+
+---
+
+## 🔄 Atualizando
+
+Quando o Design System for atualizado:
 
 ```bash
-npm install
-npm run dev
+npm run build:artifacts
 ```
 
-Abra [http://localhost:3000](http://localhost:3000)
-
-### Gerar CSS para Spring
-
-```bash
-npm run build:static
-```
-
-Isso cria `dist/alurete-design-system.css` → enviar para o time back-end.
-
-### Scripts
-
-- `npm run dev` - Servidor de desenvolvimento
-- `npm run build` - Build de produção
-- `npm run build:static` - **Gera CSS para JSP/Spring**
-- `npm run lint` - Linter
+Depois copie o novo CSS para o projeto Spring e limpe o cache (Ctrl+Shift+R).
 
 ---
 
-## 📦 Tecnologias
-
-- [Next.js 15](https://nextjs.org/)
-- [React 18](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- CSS Modules + Global CSS (BEM)
-
----
-
-**Dúvidas?** Consulte o [GUIA-RAPIDO.md](./GUIA-RAPIDO.md) ou abra uma issue.
+**Dúvidas?** Abra o [GUIA-INTEGRACAO-JSP.md](./dist/GUIA-INTEGRACAO-JSP.md) ou consulte `dist/index.html` no navegador.

@@ -1,48 +1,53 @@
 # Guia de Integração Alurete (JSP/Spring)
 
-Este guia explica como integrar o Alurete Design System em projetos Java/Spring com JSP.
+Este guia é a referência completa para integrar o Alurete Design System em projetos Java com Spring Boot e JSP.
 
 ---
 
-## 1. Instalação
+## 1. Setup do Projeto
 
-Copie a pasta `dist/css` para o diretório de assets estáticos do seu projeto Spring Boot:
-
-**Origem:** `dist/css/`  
-**Destino:** `src/main/resources/static/assets/css/alurete/`
-
-A estrutura final deve ficar assim:
+### Estrutura de Diretórios
+O Alurete deve ser instalado na pasta de recursos estáticos do Spring Boot. A estrutura recomendada é:
 
 ```
 src/main/resources/static/assets/css/alurete/
-├── core.css            # Tokens + Globals (Obrigatório)
-├── alurete-full.css    # Bundle completo (Opcional)
-└── components/         # CSS modular (Recomendado)
-    ├── button.css
-    ├── card.css
-    ├── input.css
-    └── ...
+├── core.css              # ⚠️ Obrigatório (Tokens + Globals)
+├── components/           # CSS Modular
+│   ├── button.css
+│   ├── card.css
+│   ├── input.css
+│   └── ...
+└── alurete-full.css      # Bundle completo (Opcional, use com cautela)
+```
+
+### Configuração do Spring Security (Opcional)
+Se você usa Spring Security, garanta que os assets estáticos sejam públicos:
+
+```java
+@Override
+public void configure(WebSecurity web) {
+    web.ignoring().antMatchers("/assets/**");
+}
 ```
 
 ---
 
-## 2. Importando o CSS
+## 2. Importando CSS
 
-Recomendamos a abordagem **modular** para evitar carregar CSS desnecessário.
+Recomendamos a abordagem **modular** para manter suas páginas leves.
 
-### No `<head>` do seu layout principal (ex: `header.jsp`):
+### No Layout Base (ex: `header.jsp`)
+Importe o `core.css` que contém as variáveis de design e o reset global.
 
 ```jsp
-<!-- Core Styles (Obrigatório em todas as páginas) -->
 <link rel="stylesheet" href="/assets/css/alurete/core.css">
 ```
 
-### Nas páginas específicas:
+### Nas Páginas Específicas
+Importe apenas os componentes que a página utiliza.
 
-Importe apenas os componentes que a página utiliza:
-
+**Exemplo: Página de Login**
 ```jsp
-<!-- Exemplo: Página de Login -->
 <link rel="stylesheet" href="/assets/css/alurete/components/card.css">
 <link rel="stylesheet" href="/assets/css/alurete/components/input.css">
 <link rel="stylesheet" href="/assets/css/alurete/components/button.css">
@@ -50,57 +55,54 @@ Importe apenas os componentes que a página utiliza:
 
 ---
 
-## 3. Usando Componentes com JSTL
+## 3. Trabalhando com JSTL e Spring Tags
 
-Os componentes do Alurete são apenas HTML + CSS. Você pode usar JSTL (`c:if`, `c:forEach`, etc.) livremente para adicionar lógica.
+O Alurete é agnóstico de tecnologia, mas funciona perfeitamente com as tags padrão do ecossistema Java.
 
-### Exemplo: Lista de Cards
+### Formulários com Spring MVC
+Use as classes do Alurete nas tags `<form:input>`, `<form:select>`, etc.
 
 ```jsp
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<!-- Import CSS -->
-<link rel="stylesheet" href="/assets/css/alurete/components/card.css">
-<link rel="stylesheet" href="/assets/css/alurete/components/tag.css">
-
-<div class="cards-grid">
-    <c:forEach items="${cursos}" var="curso">
-        <div class="Card-card Card-default Card-padding-medium">
-            <div class="Card-header">
-                <!-- Título do Curso -->
-                <h3><c:out value="${curso.nome}" /></h3>
+<div class="form-group">
+    <form:label path="email" cssClass="text-sm font-bold text-slate-700">Email</form:label>
+    
+    <!-- Adicione classe de erro condicionalmente -->
+    <form:input path="email" 
+                cssClass="Input-input Input-medium ${status.error ? 'Input-error' : ''}" 
+                placeholder="seu@email.com" />
                 
-                <!-- Tag de Categoria -->
-                <span class="Tag-tag Tag-primary Tag-small">
-                    <c:out value="${curso.categoria}" />
-                </span>
-            </div>
-            
+    <form:errors path="email" cssClass="text-red-600 text-xs mt-1" />
+</div>
+```
+
+### Listas e Loops (c:forEach)
+Ideal para renderizar cards ou tabelas.
+
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<div class="grid grid-cols-3 gap-4">
+    <c:forEach items="${produtos}" var="produto">
+        <div class="Card-card Card-default Card-padding-small">
             <div class="Card-content">
-                <p><c:out value="${curso.descricao}" /></p>
-            </div>
-            
-            <div class="Card-footer">
-                <a href="/curso/${curso.id}" class="Button-button Button-primary Button-small">
-                    Acessar
-                </a>
+                <h3><c:out value="${produto.nome}" /></h3>
+                <p>R$ <fmt:formatNumber value="${produto.preco}" type="currency" /></p>
             </div>
         </div>
     </c:forEach>
 </div>
 ```
 
-### Exemplo: Alerta de Erro Condicional
+### Condicionais (c:if)
+Use para exibir alertas ou estados vazios.
 
 ```jsp
-<!-- Import CSS -->
-<link rel="stylesheet" href="/assets/css/alurete/components/alert.css">
-
-<c:if test="${not empty errorMessage}">
-    <div class="Alert-alert Alert-error">
+<c:if test="${not empty mensagemSucesso}">
+    <div class="Alert-alert Alert-success">
         <div class="Alert-content">
-            <h4 class="Alert-title">Erro</h4>
-            <p class="Alert-message"><c:out value="${errorMessage}" /></p>
+            <p class="Alert-message"><c:out value="${mensagemSucesso}" /></p>
         </div>
     </div>
 </c:if>
@@ -110,15 +112,17 @@ Os componentes do Alurete são apenas HTML + CSS. Você pode usar JSTL (`c:if`, 
 
 ## 4. Mapeamento: React Props → Classes CSS
 
-Use esta tabela para traduzir os componentes do React para classes CSS:
+Use esta tabela para traduzir os componentes da documentação React para classes CSS.
 
 ### Button
 | React Prop | Classe CSS |
 |------------|------------|
 | `variant="primary"` | `.Button-primary` |
 | `variant="secondary"` | `.Button-secondary` |
+| `variant="ghost"` | `.Button-ghost` |
 | `size="small"` | `.Button-small` |
 | `size="medium"` | `.Button-medium` |
+| `disabled` | Adicionar atributo `disabled` no HTML |
 
 ### Card
 | React Prop | Classe CSS |
@@ -127,17 +131,37 @@ Use esta tabela para traduzir os componentes do React para classes CSS:
 | `padding="medium"` | `.Card-padding-medium` |
 | `border="subtle"` | `.Card-border-subtle` |
 
-### Tag
+### Input
 | React Prop | Classe CSS |
 |------------|------------|
-| `variant="success"` | `.Tag-success` |
-| `size="small"` | `.Tag-small` |
+| `size="medium"` | `.Input-medium` |
+| `error={true}` | `.Input-error` |
 
 ---
 
-## 5. Templates Prontos
+## 5. Troubleshooting Comum
 
-Consulte a pasta `dist/jsp-templates/` para ver snippets de código prontos para copiar e colar.
+### O CSS não carrega (404)
+- Verifique se a pasta `assets` está dentro de `src/main/resources/static/`.
+- Confirme se o caminho no `<link>` começa com `/`.
+- Se usar Spring Security, verifique as regras de permissão.
+
+### Classes não aplicam estilo
+- Garanta que importou o `core.css` **antes** dos componentes.
+- Verifique se não há CSS legado sobrescrevendo as regras (use o Inspecionar Elemento).
+
+### Ícones não aparecem
+- O Alurete não inclui ícones por padrão. Recomendamos usar **Lucide Icons** ou **FontAwesome**.
+- Exemplo: `<i class="fa fa-user"></i>` dentro de um botão.
+
+---
+
+## 6. Exemplos Prontos
+
+Consulte a pasta `dist/jsp-templates/` para snippets prontos de:
+- **Login Form** (`patterns/LoginForm.jsp`)
+- **Dashboard** (`examples/DashboardLayout.jsp`)
+- **Tabela Paginada** (`patterns/Pagination.jsp`)
 
 ---
 

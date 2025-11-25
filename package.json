@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:static": "node scripts/build-static.js",
+    "build:artifacts": "node scripts/build-artifacts.js",
     "start": "next start",
     "lint": "next lint"
   },

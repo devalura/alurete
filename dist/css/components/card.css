@@ -1,0 +1,106 @@
+.Card-card {
+  background-color: var(--card-surface);
+  border: var(--border-width) solid var(--color-border-default);
+  border-radius: var(--border-radius-xl);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   VARIANTS
+   ======================================== */
+.Card-default {
+  background-color: var(--card-surface);
+}
+
+.Card-secondary {
+  background-color: var(--card-secondary);
+}
+
+/* ========================================
+   BORDER VARIANTS
+   ======================================== */
+.Card-border-default {
+  border-color: var(--color-border-default);
+}
+
+.Card-border-subtle {
+  border-color: var(--color-blue-100);
+  border-width: 1px;
+  /* Keeping 1px for consistency, but lighter color */
+}
+
+/* ========================================
+   PADDING
+   ======================================== */
+.Card-padding-none {
+  padding: 0;
+}
+
+.Card-padding-small {
+  padding: var(--spacing-3);
+}
+
+.Card-padding-medium {
+  padding: var(--spacing-6);
+}
+
+.Card-padding-large {
+  padding: var(--spacing-8);
+}
+
+/* ========================================
+   HEADER & FOOTER
+   ======================================== */
+.Card-header {
+  padding-bottom: var(--spacing-4);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+  margin-bottom: var(--spacing-4);
+}
+
+.Card-footer {
+  padding-top: var(--spacing-4);
+  border-top: var(--border-width) solid var(--color-border-subtle);
+  margin-top: var(--spacing-4);
+}
+
+/* Ajuste de padding quando há header/footer com padding-none */
+.Card-padding-none .Card-header,
+.Card-padding-none .Card-footer {
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+}
+
+.Card-padding-none .Card-header {
+  padding-top: var(--spacing-6);
+}
+
+.Card-padding-none .Card-footer {
+  padding-bottom: var(--spacing-6);
+}
+
+/* ========================================
+   CONTENT
+   ======================================== */
+.Card-content {
+  flex: 1;
+}
+
+/* ========================================
+   HOVERABLE
+   ======================================== */
+.Card-hoverable {
+  cursor: pointer;
+}
+
+.Card-hoverable:hover {
+  border-color: var(--color-border-selected);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.Card-hoverable:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

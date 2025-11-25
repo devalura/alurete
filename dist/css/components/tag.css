@@ -1,0 +1,85 @@
+.Tag-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  padding: 12px;
+  border-radius: var(--border-radius-full);
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.Tag-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 0;
+}
+
+.Tag-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.Tag-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Primary variant - Blue */
+.Tag-primary {
+  background-color: var(--color-blue-100);
+  color: var(--color-blue-700);
+}
+
+.Tag-primary .Tag-icon {
+  color: var(--color-gray-500);
+}
+
+/* Secondary variant - Gray */
+.Tag-secondary {
+  background-color: var(--color-gray-200);
+  color: var(--color-body);
+}
+
+.Tag-secondary .Tag-icon {
+  color: var(--color-body);
+}
+
+/* Attention variant - Yellow */
+.Tag-attention {
+  background-color: var(--color-yellow-100);
+  color: var(--color-yellow-700);
+}
+
+.Tag-attention .Tag-icon {
+  color: var(--color-yellow-700);
+}
+
+/* Error variant - Red */
+.Tag-error {
+  background-color: var(--color-red-200);
+  color: var(--color-red-800);
+}
+
+.Tag-error .Tag-icon {
+  color: var(--color-red-800);
+}
+
+/* Success variant - Green */
+.Tag-success {
+  background-color: var(--color-emerald-200);
+  color: var(--color-emerald-800);
+}
+
+.Tag-success .Tag-icon {
+  color: var(--color-emerald-800);
+}

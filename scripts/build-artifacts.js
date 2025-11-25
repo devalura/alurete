@@ -6,241 +6,181 @@ const SRC_DIR = path.join(__dirname, '../src');
 const STYLES_DIR = path.join(SRC_DIR, 'styles');
 const COMPONENTS_DIR = path.join(SRC_DIR, 'components');
 
-// Ensure dist directory exists
+// Ensure dist directory structure exists
 if (!fs.existsSync(DIST_DIR)) {
-    fs.mkdirSync(DIST_DIR, { recursive: true });
+  fs.mkdirSync(DIST_DIR, { recursive: true });
 }
 
-console.log('🏗️  Starting Artifacts Build...');
+const cssDistDir = path.join(DIST_DIR, 'css');
+if (!fs.existsSync(cssDistDir)) {
+  fs.mkdirSync(cssDistDir, { recursive: true });
+}
+
+const componentsCssDir = path.join(cssDistDir, 'components');
+if (!fs.existsSync(componentsCssDir)) {
+  fs.mkdirSync(componentsCssDir, { recursive: true });
+}
+
+const jspTemplatesDir = path.join(DIST_DIR, 'jsp-templates');
+if (!fs.existsSync(jspTemplatesDir)) {
+  fs.mkdirSync(jspTemplatesDir, { recursive: true });
+}
+
+const logFile = path.join(__dirname, 'build.log');
+function log(msg) {
+  fs.appendFileSync(logFile, msg + '\n');
+  console.log(msg);
+}
+
+log('🏗️  Starting Artifacts Build...');
 
 // 1. Copy Tokens
 console.log('🎨 Copying Design Tokens...');
 const tokensSrc = path.join(__dirname, '../design-tokens.json');
 if (fs.existsSync(tokensSrc)) {
-    fs.copyFileSync(tokensSrc, path.join(DIST_DIR, 'tokens.json'));
+  fs.copyFileSync(tokensSrc, path.join(DIST_DIR, 'tokens.json'));
 }
 
-// 2. Build CSS Bundle
-console.log('💅 Building CSS Bundle...');
+// 2. Build CSS Bundle & Modular CSS
+console.log('💅 Building CSS...');
 
-let cssBundle = '/* Alurete Design System - Static Bundle */\n\n';
+let fullCssBundle = '/* Alurete Design System - Full Bundle */\n\n';
+let coreCssBundle = '/* Alurete Design System - Core (Tokens + Globals) */\n\n';
 
 // Add Tokens CSS
 const tokensCssPath = path.join(STYLES_DIR, 'tokens.css');
 if (fs.existsSync(tokensCssPath)) {
-    cssBundle += `/* --- Tokens --- */\n`;
-    cssBundle += fs.readFileSync(tokensCssPath, 'utf8') + '\n\n';
+  const tokensContent = fs.readFileSync(tokensCssPath, 'utf8');
+  fullCssBundle += `/* --- Tokens --- */\n${tokensContent}\n\n`;
+  coreCssBundle += `/* --- Tokens --- */\n${tokensContent}\n\n`;
+
+  // Save standalone tokens.css
+  fs.writeFileSync(path.join(cssDistDir, 'tokens.css'), tokensContent);
 }
 
 // Add Global CSS
 const globalsCssPath = path.join(STYLES_DIR, 'globals.css');
 if (fs.existsSync(globalsCssPath)) {
-    cssBundle += `/* --- Globals --- */\n`;
-    cssBundle += fs.readFileSync(globalsCssPath, 'utf8') + '\n\n';
+  const globalsContent = fs.readFileSync(globalsCssPath, 'utf8');
+  fullCssBundle += `/* --- Globals --- */\n${globalsContent}\n\n`;
+  coreCssBundle += `/* --- Globals --- */\n${globalsContent}\n\n`;
+
+  // Save standalone globals.css
+  fs.writeFileSync(path.join(cssDistDir, 'globals.css'), globalsContent);
 }
+
+// Save Core Bundle
+fs.writeFileSync(path.join(cssDistDir, 'core.css'), coreCssBundle);
 
 // Process Component CSS
 const componentDirs = fs.readdirSync(COMPONENTS_DIR, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
+  .filter(dirent => dirent.isDirectory())
+  .map(dirent => dirent.name);
 
 componentDirs.forEach(componentName => {
-    const componentPath = path.join(COMPONENTS_DIR, componentName);
-    const files = fs.readdirSync(componentPath);
+  const componentPath = path.join(COMPONENTS_DIR, componentName);
+  const files = fs.readdirSync(componentPath);
 
-    files.forEach(file => {
-        if (file.endsWith('.module.css')) {
-            const cssPath = path.join(componentPath, file);
-            let cssContent = fs.readFileSync(cssPath, 'utf8');
+  files.forEach(file => {
+    if (file.endsWith('.module.css')) {
+      const cssPath = path.join(componentPath, file);
+      let cssContent = fs.readFileSync(cssPath, 'utf8');
 
-            // Namespace the classes with ComponentName prefix
-            const namespacedCss = cssContent.replace(/\.([a-zA-Z_-][\w-]*)/g, (match, className) => {
-                return `.${componentName}-${className}`;
-            });
+      // Namespace the classes with ComponentName prefix
+      const namespacedCss = cssContent.replace(/\.([a-zA-Z_-][\w-]*)/g, (match, className) => {
+        return `.${componentName}-${className}`;
+      });
 
-            cssBundle += `/* --- Component: ${componentName} --- */\n`;
-            cssBundle += namespacedCss + '\n\n';
-        }
-    });
+      // Add to full bundle
+      fullCssBundle += `/* --- Component: ${componentName} --- */\n`;
+      fullCssBundle += namespacedCss + '\n\n';
+
+      // Save modular component CSS
+      fs.writeFileSync(path.join(componentsCssDir, `${componentName.toLowerCase()}.css`), namespacedCss);
+    }
+  });
 });
 
-fs.writeFileSync(path.join(DIST_DIR, 'alurete.css'), cssBundle);
-console.log(`✅ CSS Bundle generated at ${path.join(DIST_DIR, 'alurete.css')}`);
+fs.writeFileSync(path.join(cssDistDir, 'alurete-full.css'), fullCssBundle);
+console.log(`✅ CSS generated in ${cssDistDir}`);
 
-// 3. Generate HTML Snippets
-console.log('📝 Generating HTML Snippets...');
-const snippetsDir = path.join(DIST_DIR, 'templates');
-if (!fs.existsSync(snippetsDir)) {
-    fs.mkdirSync(snippetsDir);
-}
+// 3. Generate JSP Templates
+console.log('📝 Generating JSP Templates...');
 
-// Component templates with real examples
-const componentTemplates = {
-    Button: `<!-- Button Component -->
-<!-- Variants: primary, secondary, ghost, link -->
-<!-- Sizes: small, medium, large -->
+const jspTemplates = {
+  Button: `<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- Primary Button (Medium) -->
+<!-- 
+  Button Component 
+  Import CSS: <link rel="stylesheet" href="/assets/css/alurete/components/button.css">
+-->
+
+<!-- Primary Button -->
 <button class="Button-button Button-primary Button-medium">
-  Salvar
+  <c:out value="\${label}" default="Salvar" />
 </button>
 
-<!-- Secondary Button (Small) -->
-<button class="Button-button Button-secondary Button-small">
-  Cancelar
-</button>
+<!-- Conditional Button -->
+<c:if test="\${showButton}">
+  <button class="Button-button Button-secondary Button-small">
+    Cancelar
+  </button>
+</c:if>`,
 
-<!-- Ghost Button (Large) -->
-<button class="Button-button Button-ghost Button-large">
-  Detalhes
-</button>
+  Card: `<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- Link Button -->
-<button class="Button-button Button-link Button-medium">
-  Saiba mais
-</button>`,
+<!-- 
+  Card Component
+  Import CSS: <link rel="stylesheet" href="/assets/css/alurete/components/card.css">
+-->
 
-    Card: `<!-- Card Component -->
-<!-- Variants: default, secondary -->
-<!-- Padding: none, small, medium, large -->
-<!-- Border: default, subtle -->
-
-<!-- Card with Medium Padding -->
-<div class="Card-card Card-default Card-padding-medium Card-border-default">
-  <div class="Card-content">
-    <h3>Título do Card</h3>
-    <p>Conteúdo do card aqui.</p>
-  </div>
-</div>
-
-<!-- Card with Header and Footer -->
 <div class="Card-card Card-default Card-padding-medium">
   <div class="Card-header">
-    <h3>Header</h3>
+    <h3><c:out value="\${cardTitle}" /></h3>
   </div>
+  
   <div class="Card-content">
-    <p>Conteúdo principal</p>
-  </div>
-  <div class="Card-footer">
-    <button class="Button-button Button-primary Button-small">Ação</button>
+    <!-- Loop Example -->
+    <c:forEach items="\${items}" var="item">
+      <p><c:out value="\${item.name}" /></p>
+    </c:forEach>
   </div>
 </div>`,
 
-    Input: `<!-- Input Component -->
-<!-- Sizes: small, medium, large -->
-<!-- States: error (add Input-error for validation errors) -->
+  Alert: `<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- Basic Input (Medium) -->
-<input 
-  type="text" 
-  class="Input-input Input-medium" 
-  placeholder="Digite seu nome..."
-/>
+<!-- 
+  Alert Component
+  Import CSS: <link rel="stylesheet" href="/assets/css/alurete/components/alert.css">
+-->
 
-<!-- Large Input -->
-<input 
-  type="email" 
-  class="Input-input Input-large" 
-  placeholder="seu@email.com"
-/>
-
-<!-- Input with Error -->
-<input 
-  type="text" 
-  class="Input-input Input-medium Input-error" 
-  placeholder="Campo obrigatório"
-/>`,
-
-    Alert: `<!-- Alert Component -->
-<!-- Variants: success, error, warning, info -->
-
-<!-- Success Alert -->
-<div class="Alert-alert Alert-success">
-  <div class="Alert-content">
-    <div class="Alert-headerRow">
-      <div class="Alert-titleSection">
-        <h4 class="Alert-title">Sucesso!</h4>
-      </div>
+<c:if test="\${not empty message}">
+  <div class="Alert-alert Alert-\${messageType}"> <!-- messageType: success, error, warning, info -->
+    <div class="Alert-content">
+      <h4 class="Alert-title"><c:out value="\${messageTitle}" /></h4>
+      <p class="Alert-message"><c:out value="\${message}" /></p>
     </div>
-    <p class="Alert-message">Sua operação foi concluída com sucesso.</p>
   </div>
-</div>
-
-<!-- Error Alert -->
-<div class="Alert-alert Alert-error">
-  <div class="Alert-content">
-    <div class="Alert-headerRow">
-      <div class="Alert-titleSection">
-        <h4 class="Alert-title">Erro</h4>
-      </div>
-    </div>
-    <p class="Alert-message">Ocorreu um erro ao processar sua solicitação.</p>
-  </div>
-</div>`,
-
-    Avatar: `<!-- Avatar Component -->
-<!-- Sizes: size24, size32, size40, size110 -->
-
-<!-- Small Avatar (40px) -->
-<div class="Avatar-avatar Avatar-size40">
-  <img src="avatar.jpg" alt="User Avatar" class="Avatar-image" />
-</div>
-
-<!-- Large Avatar (110px) -->
-<div class="Avatar-avatar Avatar-size110">
-  <img src="avatar.jpg" alt="User Avatar" class="Avatar-image" />
-</div>`,
-
-    Tag: `<!-- Tag Component -->
-<!-- Variants: primary, secondary, success, warning, error -->
-<!-- Sizes: small, medium, large -->
-
-<!-- Primary Tag -->
-<span class="Tag-tag Tag-primary Tag-medium">
-  Nova Feature
-</span>
-
-<!-- Success Tag -->
-<span class="Tag-tag Tag-success Tag-small">
-  Ativo
-</span>
-
-<!-- Error Tag -->
-<span class="Tag-tag Tag-error Tag-medium">
-  Urgente
-</span>`,
-
-    Checkbox: `<!-- Checkbox Component -->
-<label class="Checkbox-container">
-  <input type="checkbox" class="Checkbox-checkbox" />
-  <span class="Checkbox-label">Aceito os termos</span>
-</label>`,
-
-    Radio: `<!-- Radio Component -->
-<label class="Radio-container">
-  <input type="radio" name="option" class="Radio-radio" />
-  <span class="Radio-label">Opção 1</span>
-</label>
-
-<label class="Radio-container">
-  <input type="radio" name="option" class="Radio-radio" />
-  <span class="Radio-label">Opção 2</span>
-</label>`
+</c:if>`
 };
 
-// Generate templates for each component
+// Generate JSP templates
 componentDirs.forEach(componentName => {
-    const template = componentTemplates[componentName] || `<!-- ${componentName} Component -->
-<!-- Consulte a documentação completa em index.html -->
+  const template = jspTemplates[componentName] || `<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!-- 
+  ${componentName} Component
+  Import CSS: <link rel="stylesheet" href="/assets/css/alurete/components/${componentName.toLowerCase()}.css">
+-->
 
 <div class="${componentName}-root">
   <!-- Conteúdo do ${componentName} -->
 </div>`;
 
-    fs.writeFileSync(path.join(snippetsDir, `${componentName}.html`), template);
+  fs.writeFileSync(path.join(jspTemplatesDir, `${componentName}.jsp`), template);
 });
 
-console.log(`✅ HTML Snippets generated in ${snippetsDir}`);
+console.log(`✅ JSP Templates generated in ${jspTemplatesDir}`);
 
 // 4. Generate index.html documentation
 console.log('📚 Generating Documentation (index.html)...');
@@ -251,205 +191,73 @@ const indexHtml = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alurete Design System - Documentação</title>
-  <link rel="stylesheet" href="alurete.css">
+  <link rel="stylesheet" href="css/alurete-full.css">
   <style>
-    body {
-      font-family: var(--font-family-sans);
-      line-height: 1.6;
-      margin: 0;
-      padding: 40px 20px;
-      background: #f8fafc;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: var(--color-brand-default);
-      border-bottom: 3px solid var(--color-brand-default);
-      padding-bottom: 16px;
-      margin-bottom: 32px;
-    }
-    h2 {
-      color: var(--color-text-title);
-      margin-top: 48px;
-      margin-bottom: 24px;
-      border-left: 4px solid var(--color-brand-default);
-      padding-left: 16px;
-    }
-    .component-demo {
-      background: #f8fafc;
-      padding: 32px;
-      border-radius: 8px;
-      margin: 24px 0;
-      border: 1px solid #e2e8f0;
-    }
-    .code-block {
-      background: #1e293b;
-      color: #e2e8f0;
-      padding: 20px;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin: 16px 0;
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-    }
-    .variant-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 16px 0;
-    }
-    .info-box {
-      background: #dbeafe;
-      padding: 16px;
-      border-radius: 8px;
-      margin: 24px 0;
-      border-left: 4px solid var(--color-brand-default);
-    }
+    body { font-family: sans-serif; padding: 20px; background: #f8fafc; }
+    .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h1 { color: #1d4ed8; border-bottom: 2px solid #1d4ed8; padding-bottom: 10px; }
+    h2 { margin-top: 40px; border-left: 4px solid #1d4ed8; padding-left: 10px; color: #334155; }
+    .demo { padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; margin: 10px 0; background: #f8fafc; }
+    pre { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 4px; overflow-x: auto; }
+    .info { background: #dbeafe; padding: 15px; border-radius: 4px; margin: 20px 0; border-left: 4px solid #1d4ed8; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🎨 Alurete Design System</h1>
-    <p><strong>Documentação dos Artifacts Estáticos</strong> para uso em projetos Java/Spring/JSP</p>
+    <p>Documentação para uso em projetos Java/Spring/JSP.</p>
 
-    <div class="info-box">
-      <strong>📦 Como usar:</strong> Importe o arquivo <code>alurete.css</code> no seu projeto e use as classes CSS diretamente no HTML/JSP.
+    <div class="info">
+      <strong>📦 Instalação:</strong><br>
+      Copie a pasta <code>css/</code> para <code>src/main/resources/static/assets/css/alurete/</code>
     </div>
 
-    <!-- Button -->
-    <h2>Button</h2>
-    <p>Botões com diferentes variantes e tamanhos.</p>
-    <div class="component-demo">
-      <div class="variant-row">
-        <button class="Button-button Button-primary Button-small">Small Primary</button>
-        <button class="Button-button Button-primary Button-medium">Medium Primary</button>
-        <button class="Button-button Button-primary Button-large">Large Primary</button>
-      </div>
-      <div class="variant-row">
-        <button class="Button-button Button-secondary Button-medium">Secondary</button>
-        <button class="Button-button Button-ghost Button-medium">Ghost</button>
-        <button class="Button-button Button-link Button-medium">Link</button>
+    <h2>Importação CSS</h2>
+    <p>Você pode importar o bundle completo ou módulos individuais:</p>
+    
+    <h3>Opção 1: Bundle Completo</h3>
+    <pre>&lt;link rel="stylesheet" href="/assets/css/alurete/alurete-full.css"&gt;</pre>
+
+    <h3>Opção 2: Modular (Recomendado)</h3>
+    <pre>&lt;!-- Core (Obrigatório) --&gt;
+&lt;link rel="stylesheet" href="/assets/css/alurete/core.css"&gt;
+
+&lt;!-- Componentes (Sob demanda) --&gt;
+&lt;link rel="stylesheet" href="/assets/css/alurete/components/button.css"&gt;
+&lt;link rel="stylesheet" href="/assets/css/alurete/components/card.css"&gt;</pre>
+
+    <h2>Componentes</h2>
+
+    <h3>Button</h3>
+    <div class="demo">
+      <button class="Button-button Button-primary Button-medium">Primary</button>
+      <button class="Button-button Button-secondary Button-medium">Secondary</button>
+    </div>
+    <pre>&lt;button class="Button-button Button-primary Button-medium"&gt;Salvar&lt;/button&gt;</pre>
+
+    <h3>Card</h3>
+    <div class="demo">
+      <div class="Card-card Card-default Card-padding-medium">
+        <div class="Card-content">Conteúdo do Card</div>
       </div>
     </div>
-    <div class="code-block">&lt;button class="Button-button Button-primary Button-medium"&gt;
-  Salvar
-&lt;/button&gt;</div>
+    <pre>&lt;div class="Card-card Card-default Card-padding-medium"&gt;
+  &lt;div class="Card-content"&gt;Conteúdo&lt;/div&gt;
+&lt;/div&gt;</pre>
 
-    <!-- Card -->
-    <h2>Card</h2>
-    <p>Containers para agrupar conteúdo relacionado.</p>
-    <div class="component-demo">
-      <div class="Card-card Card-default Card-padding-medium Card-border-default" style="max-width: 400px;">
-        <div class="Card-content">
-          <h3 style="margin-top: 0;">Título do Card</h3>
-          <p>Este é um exemplo de card com padding médio e borda padrão.</p>
-          <button class="Button-button Button-primary Button-small">Ação</button>
-        </div>
-      </div>
-    </div>
-    <div class="code-block">&lt;div class="Card-card Card-default Card-padding-medium"&gt;
-  &lt;div class="Card-content"&gt;
-    Conteúdo aqui
-  &lt;/div&gt;
-&lt;/div&gt;</div>
-
-    <!-- Alert -->
-    <h2>Alert</h2>
-    <p>Mensagens de feedback para o usuário.</p>
-    <div class="component-demo">
-      <div class="Alert-alert Alert-success" style="margin-bottom: 16px;">
+    <h3>Alert</h3>
+    <div class="demo">
+      <div class="Alert-alert Alert-success">
         <div class="Alert-content">
-          <div class="Alert-headerRow">
-            <div class="Alert-titleSection">
-              <h4 class="Alert-title">Sucesso!</h4>
-            </div>
-          </div>
-          <p class="Alert-message">Operação realizada com sucesso.</p>
-        </div>
-      </div>
-      <div class="Alert-alert Alert-error">
-        <div class="Alert-content">
-          <div class="Alert-headerRow">
-            <div class="Alert-titleSection">
-              <h4 class="Alert-title">Erro</h4>
-            </div>
-          </div>
-          <p class="Alert-message">Ocorreu um erro ao processar sua solicitação.</p>
+          <h4 class="Alert-title">Sucesso</h4>
+          <p class="Alert-message">Operação realizada.</p>
         </div>
       </div>
     </div>
-    <div class="code-block">&lt;div class="Alert-alert Alert-success"&gt;
-  &lt;div class="Alert-content"&gt;
-    &lt;h4 class="Alert-title"&gt;Sucesso!&lt;/h4&gt;
-    &lt;p class="Alert-message"&gt;Mensagem aqui&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</div>
+    <pre>&lt;div class="Alert-alert Alert-success"&gt;...&lt;/div&gt;</pre>
 
-    <!-- Tag -->
-    <h2>Tag</h2>
-    <p>Tags para categorização e status.</p>
-    <div class="component-demo">
-      <div class="variant-row">
-        <span class="Tag-tag Tag-primary Tag-medium">Primary</span>
-        <span class="Tag-tag Tag-secondary Tag-medium">Secondary</span>
-        <span class="Tag-tag Tag-success Tag-medium">Success</span>
-        <span class="Tag-tag Tag-warning Tag-medium">Warning</span>
-        <span class="Tag-tag Tag-error Tag-medium">Error</span>
-      </div>
-    </div>
-    <div class="code-block">&lt;span class="Tag-tag Tag-primary Tag-medium"&gt;
-  Nova Feature
-&lt;/span&gt;</div>
-
-    <!-- Input -->
-    <h2>Input</h2>
-    <p>Campos de entrada de texto.</p>
-    <div class="component-demo">
-      <div style="max-width: 400px; display: flex; flex-direction: column; gap: 12px;">
-        <input type="text" class="Input-input Input-small" placeholder="Small input" />
-        <input type="text" class="Input-input Input-medium" placeholder="Medium input" />
-        <input type="text" class="Input-input Input-large" placeholder="Large input" />
-      </div>
-    </div>
-    <div class="code-block">&lt;input 
-  type="text" 
-  class="Input-input Input-medium" 
-  placeholder="Digite aqui..."
-/&gt;</div>
-
-    <!-- Avatar -->
-    <h2>Avatar</h2>
-    <p>Imagens de perfil do usuário.</p>
-    <div class="component-demo">
-      <div class="variant-row">
-        <div class="Avatar-avatar Avatar-size24" style="background: #dbeafe;"></div>
-        <div class="Avatar-avatar Avatar-size32" style="background: #dbeafe;"></div>
-        <div class="Avatar-avatar Avatar-size40" style="background: #dbeafe;"></div>
-        <div class="Avatar-avatar Avatar-size110" style="background: #dbeafe;"></div>
-      </div>
-    </div>
-    <div class="code-block">&lt;div class="Avatar-avatar Avatar-size40"&gt;
-  &lt;img src="avatar.jpg" alt="User" class="Avatar-image" /&gt;
-&lt;/div&gt;</div>
-
-    <hr style="margin: 48px 0; border: none; border-top: 2px solid #e2e8f0;">
-
-    <h2>📚 Recursos Adicionais</h2>
-    <ul>
-      <li><strong>README.md</strong> - Guia completo de uso</li>
-      <li><strong>templates/</strong> - Snippets HTML prontos para copiar</li>
-      <li><strong>tokens.json</strong> - Design tokens exportados</li>
-    </ul>
-
-    <div class="info-box">
-      <strong>🔄 Atualização:</strong> Este arquivo é gerado automaticamente. Para atualizar, rode <code>npm run build:artifacts</code> no projeto Next.js.
-    </div>
+    <hr>
+    <p>Consulte a pasta <code>jsp-templates/</code> para exemplos de integração com JSTL.</p>
   </div>
 </body>
 </html>`;

@@ -1,0 +1,149 @@
+.Checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.Checkbox-containerDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   CHECKBOX WRAPPER
+   ======================================== */
+.Checkbox-checkboxWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   NATIVE INPUT (hidden)
+   ======================================== */
+.Checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   CUSTOM CHECKBOX
+   ======================================== */
+.Checkbox-checkbox {
+  width: 22px;
+  height: 22px;
+  background-color: var(--color-surface-interactive);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.Checkbox-checkbox:hover:not(.Checkbox-checkboxDisabled) {
+  border-color: var(--color-border-selected);
+  background-color: var(--color-surface-subtle);
+}
+
+.Checkbox-input:focus-visible + .Checkbox-checkbox {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   CHECKED STATE
+   ======================================== */
+.Checkbox-checkboxChecked {
+  background-color: var(--color-brand-default);
+  border-color: var(--color-brand-default);
+}
+
+.Checkbox-checkboxChecked:hover:not(.Checkbox-checkboxDisabled) {
+  background-color: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
+}
+
+/* ========================================
+   CHECK ICON
+   ======================================== */
+.Checkbox-checkIcon {
+  color: var(--color-icon-on-brand);
+  stroke-width: 3;
+}
+
+/* ========================================
+   DISABLED STATE
+   ======================================== */
+.Checkbox-checkboxDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ========================================
+   LABEL WRAPPER
+   ======================================== */
+.Checkbox-labelWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex: 1;
+}
+
+/* ========================================
+   LABEL
+   ======================================== */
+.Checkbox-label {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-body);
+  line-height: 1.3;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Checkbox-labelDisabled {
+  cursor: not-allowed;
+}
+
+/* ========================================
+   INFO ICON
+   ======================================== */
+.Checkbox-infoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-brand-default);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.Checkbox-infoIcon:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.Checkbox-infoIcon:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ========================================
+   AUXILIARY BUTTON
+   ======================================== */
+.Checkbox-auxiliaryButton {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}

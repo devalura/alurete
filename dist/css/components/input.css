@@ -1,0 +1,196 @@
+.Input-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.Input-fullWidth {
+  width: 100%;
+}
+
+.Input-labelWrapper {
+  display: flex;
+  gap: var(--spacing-1);
+  align-items: baseline;
+  margin-bottom: var(--spacing-0-5);
+}
+
+.Input-label {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-title);
+  line-height: 1.5;
+}
+
+.Input-optional {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-body);
+  line-height: 1.5;
+}
+
+/* ========================================
+   INPUT WRAPPER
+   ======================================== */
+.Input-inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2-5);
+  background-color: var(--color-surface-interactive);
+  border: var(--border-width) solid var(--color-border-default);
+  border-radius: var(--border-radius-full);
+  transition: all 0.2s ease;
+}
+
+.Input-inputWrapper:hover:not(.Input-disabled) {
+  border-color: var(--color-border-selected);
+}
+
+.Input-inputWrapper:focus-within:not(.Input-disabled) {
+  border-color: var(--color-border-selected);
+  box-shadow: 0 0 0 1px var(--color-border-selected);
+}
+
+/* ========================================
+   INPUT ELEMENT
+   ======================================== */
+.Input-input {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text-title);
+  font-family: var(--font-family-sans);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.Input-input::placeholder {
+  color: var(--color-text-body);
+}
+
+.Input-input:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ========================================
+   SIZES
+   ======================================== */
+.Input-small {
+  height: 32px;
+  padding: 0 var(--spacing-4);
+}
+
+.Input-small .Input-input {
+  font-size: 13px;
+}
+
+.Input-medium {
+  height: 40px;
+  padding: var(--spacing-2-5) var(--spacing-4);
+}
+
+.Input-medium .Input-input {
+  font-size: 13px;
+}
+
+.Input-large {
+  height: 48px;
+  padding: 0 var(--spacing-4);
+}
+
+.Input-large .Input-input {
+  font-size: var(--font-size-base);
+}
+
+/* ========================================
+   ICONS
+   ======================================== */
+.Input-leftIcon,
+.Input-rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-icon-secondary);
+  flex-shrink: 0;
+}
+
+.Input-leftIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.Input-rightIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.Input-hasLeftIcon .Input-input {
+  padding-left: 0;
+}
+
+.Input-hasRightIcon .Input-input {
+  padding-right: 0;
+}
+
+/* ========================================
+   VARIANTS
+   ======================================== */
+.Input-error {
+  border-color: var(--color-feedback-error-default);
+}
+
+.Input-error:hover:not(.Input-disabled),
+.Input-error:focus-within:not(.Input-disabled) {
+  border-color: var(--color-feedback-error-default);
+  box-shadow: 0 0 0 1px var(--color-feedback-error-default);
+}
+
+.Input-success {
+  border-color: var(--color-feedback-success-default);
+}
+
+.Input-success:hover:not(.Input-disabled),
+.Input-success:focus-within:not(.Input-disabled) {
+  border-color: var(--color-feedback-success-default);
+  box-shadow: 0 0 0 1px var(--color-feedback-success-default);
+}
+
+/* ========================================
+   DISABLED STATE
+   ======================================== */
+.Input-disabled {
+  background-color: var(--color-surface-subtle);
+  border-color: var(--color-border-subtle);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.Input-disabled .Input-leftIcon,
+.Input-disabled .Input-rightIcon {
+  color: var(--color-text-disabled);
+}
+
+/* ========================================
+   HELPER TEXT
+   ======================================== */
+.Input-helperText {
+  font-family: var(--font-family-brand);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-body);
+  line-height: 1.5;
+}
+
+.Input-helperError {
+  color: var(--color-feedback-error-default);
+}
+
+.Input-helperSuccess {
+  color: var(--color-feedback-success-default);
+}

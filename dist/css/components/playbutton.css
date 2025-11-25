@@ -1,0 +1,90 @@
+.PlayButton-button {
+  background-color: var(--color-brand-default);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  box-shadow: inset 0px 0px 10px 0px rgba(2, 6, 23, 0.3);
+  color: var(--color-text-on-brand);
+}
+
+/* Size variants */
+.PlayButton-small {
+  padding: 8px 8px 8px 24px;
+  gap: 14px;
+}
+
+.PlayButton-large {
+  padding: 8px 8px 8px 24px;
+  gap: 14px;
+}
+
+/* Device variants */
+.PlayButton-desktop.PlayButton-small .PlayButton-text {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.PlayButton-desktop.PlayButton-large .PlayButton-text,
+.PlayButton-mobile.PlayButton-large .PlayButton-text {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.PlayButton-mobile.PlayButton-small .PlayButton-text {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.PlayButton-text {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.PlayButton-playIcon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PlayButton-playCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PlayButton-button:hover:not(:disabled) {
+  background-color: #1e40af;
+  transform: translateX(4px);
+}
+
+.PlayButton-button:active:not(:disabled) {
+  background-color: #1e3a8a;
+  transform: translateX(2px);
+}
+
+.PlayButton-button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.PlayButton-button:focus-visible {
+  outline: 2px solid var(--color-brand-default);
+  outline-offset: 2px;
+}

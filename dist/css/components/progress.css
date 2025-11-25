@@ -1,0 +1,51 @@
+.Progress-container {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  line-height: 0;
+}
+
+/* ========================================
+   TRACK (background)
+   ======================================== */
+.Progress-track {
+  position: relative;
+  background-color: #ebf1ff;
+  border-radius: 19px;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* ========================================
+   FILL (progress bar)
+   ======================================== */
+.Progress-fill {
+  height: 100%;
+  background-color: #86efac;
+  border-radius: 44px;
+  transition: width 0.3s ease;
+}
+
+/* ========================================
+   SIZES
+   ======================================== */
+.Progress-small .Progress-track {
+  height: 8px;
+}
+
+.Progress-large .Progress-track {
+  height: 8px;
+}
+
+/* ========================================
+   LABEL
+   ======================================== */
+.Progress-label {
+  font-family: var(--font-family-brand);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-body, #64748b);
+  line-height: 1.1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

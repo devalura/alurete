@@ -4,205 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alurete Design System - Documentação</title>
-  <link rel="stylesheet" href="alurete.css">
+  <link rel="stylesheet" href="css/alurete-full.css">
   <style>
-    body {
-      font-family: var(--font-family-sans);
-      line-height: 1.6;
-      margin: 0;
-      padding: 40px 20px;
-      background: #f8fafc;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: var(--color-brand-default);
-      border-bottom: 3px solid var(--color-brand-default);
-      padding-bottom: 16px;
-      margin-bottom: 32px;
-    }
-    h2 {
-      color: var(--color-text-title);
-      margin-top: 48px;
-      margin-bottom: 24px;
-      border-left: 4px solid var(--color-brand-default);
-      padding-left: 16px;
-    }
-    .component-demo {
-      background: #f8fafc;
-      padding: 32px;
-      border-radius: 8px;
-      margin: 24px 0;
-      border: 1px solid #e2e8f0;
-    }
-    .code-block {
-      background: #1e293b;
-      color: #e2e8f0;
-      padding: 20px;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin: 16px 0;
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-    }
-    .variant-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 16px 0;
-    }
-    .info-box {
-      background: #dbeafe;
-      padding: 16px;
-      border-radius: 8px;
-      margin: 24px 0;
-      border-left: 4px solid var(--color-brand-default);
-    }
+    body { font-family: sans-serif; padding: 20px; background: #f8fafc; }
+    .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h1 { color: #1d4ed8; border-bottom: 2px solid #1d4ed8; padding-bottom: 10px; }
+    h2 { margin-top: 40px; border-left: 4px solid #1d4ed8; padding-left: 10px; color: #334155; }
+    .demo { padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; margin: 10px 0; background: #f8fafc; }
+    pre { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 4px; overflow-x: auto; }
+    .info { background: #dbeafe; padding: 15px; border-radius: 4px; margin: 20px 0; border-left: 4px solid #1d4ed8; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🎨 Alurete Design System</h1>
-    <p><strong>Documentação dos Artifacts Estáticos</strong> para uso em projetos Java/Spring/JSP</p>
+    <p>Documentação para uso em projetos Java/Spring/JSP.</p>
 
-    <div class="info-box">
-      <strong>📦 Como usar:</strong> Importe o arquivo <code>alurete.css</code> no seu projeto e use as classes CSS diretamente no HTML/JSP.
+    <div class="info">
+      <strong>📦 Instalação:</strong><br>
+      Copie a pasta <code>css/</code> para <code>src/main/resources/static/assets/css/alurete/</code>
     </div>
 
-    <!-- Button -->
-    <h2>Button</h2>
-    <p>Botões com diferentes variantes e tamanhos.</p>
-    <div class="component-demo">
-      <div class="variant-row">
-        <button class="Button-button Button-primary Button-small">Small Primary</button>
-        <button class="Button-button Button-primary Button-medium">Medium Primary</button>
-        <button class="Button-button Button-primary Button-large">Large Primary</button>
-      </div>
-      <div class="variant-row">
-        <button class="Button-button Button-secondary Button-medium">Secondary</button>
-        <button class="Button-button Button-ghost Button-medium">Ghost</button>
-        <button class="Button-button Button-link Button-medium">Link</button>
+    <h2>Importação CSS</h2>
+    <p>Você pode importar o bundle completo ou módulos individuais:</p>
+    
+    <h3>Opção 1: Bundle Completo</h3>
+    <pre>&lt;link rel="stylesheet" href="/assets/css/alurete/alurete-full.css"&gt;</pre>
+
+    <h3>Opção 2: Modular (Recomendado)</h3>
+    <pre>&lt;!-- Core (Obrigatório) --&gt;
+&lt;link rel="stylesheet" href="/assets/css/alurete/core.css"&gt;
+
+&lt;!-- Componentes (Sob demanda) --&gt;
+&lt;link rel="stylesheet" href="/assets/css/alurete/components/button.css"&gt;
+&lt;link rel="stylesheet" href="/assets/css/alurete/components/card.css"&gt;</pre>
+
+    <h2>Componentes</h2>
+
+    <h3>Button</h3>
+    <div class="demo">
+      <button class="Button-button Button-primary Button-medium">Primary</button>
+      <button class="Button-button Button-secondary Button-medium">Secondary</button>
+    </div>
+    <pre>&lt;button class="Button-button Button-primary Button-medium"&gt;Salvar&lt;/button&gt;</pre>
+
+    <h3>Card</h3>
+    <div class="demo">
+      <div class="Card-card Card-default Card-padding-medium">
+        <div class="Card-content">Conteúdo do Card</div>
       </div>
     </div>
-    <div class="code-block">&lt;button class="Button-button Button-primary Button-medium"&gt;
-  Salvar
-&lt;/button&gt;</div>
+    <pre>&lt;div class="Card-card Card-default Card-padding-medium"&gt;
+  &lt;div class="Card-content"&gt;Conteúdo&lt;/div&gt;
+&lt;/div&gt;</pre>
 
-    <!-- Card -->
-    <h2>Card</h2>
-    <p>Containers para agrupar conteúdo relacionado.</p>
-    <div class="component-demo">
-      <div class="Card-card Card-default Card-padding-medium Card-border-default" style="max-width: 400px;">
-        <div class="Card-content">
-          <h3 style="margin-top: 0;">Título do Card</h3>
-          <p>Este é um exemplo de card com padding médio e borda padrão.</p>
-          <button class="Button-button Button-primary Button-small">Ação</button>
-        </div>
-      </div>
-    </div>
-    <div class="code-block">&lt;div class="Card-card Card-default Card-padding-medium"&gt;
-  &lt;div class="Card-content"&gt;
-    Conteúdo aqui
-  &lt;/div&gt;
-&lt;/div&gt;</div>
-
-    <!-- Alert -->
-    <h2>Alert</h2>
-    <p>Mensagens de feedback para o usuário.</p>
-    <div class="component-demo">
-      <div class="Alert-alert Alert-success" style="margin-bottom: 16px;">
+    <h3>Alert</h3>
+    <div class="demo">
+      <div class="Alert-alert Alert-success">
         <div class="Alert-content">
-          <div class="Alert-headerRow">
-            <div class="Alert-titleSection">
-              <h4 class="Alert-title">Sucesso!</h4>
-            </div>
-          </div>
-          <p class="Alert-message">Operação realizada com sucesso.</p>
-        </div>
-      </div>
-      <div class="Alert-alert Alert-error">
-        <div class="Alert-content">
-          <div class="Alert-headerRow">
-            <div class="Alert-titleSection">
-              <h4 class="Alert-title">Erro</h4>
-            </div>
-          </div>
-          <p class="Alert-message">Ocorreu um erro ao processar sua solicitação.</p>
+          <h4 class="Alert-title">Sucesso</h4>
+          <p class="Alert-message">Operação realizada.</p>
         </div>
       </div>
     </div>
-    <div class="code-block">&lt;div class="Alert-alert Alert-success"&gt;
-  &lt;div class="Alert-content"&gt;
-    &lt;h4 class="Alert-title"&gt;Sucesso!&lt;/h4&gt;
-    &lt;p class="Alert-message"&gt;Mensagem aqui&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</div>
+    <pre>&lt;div class="Alert-alert Alert-success"&gt;...&lt;/div&gt;</pre>
 
-    <!-- Tag -->
-    <h2>Tag</h2>
-    <p>Tags para categorização e status.</p>
-    <div class="component-demo">
-      <div class="variant-row">
-        <span class="Tag-tag Tag-primary Tag-medium">Primary</span>
-        <span class="Tag-tag Tag-secondary Tag-medium">Secondary</span>
-        <span class="Tag-tag Tag-success Tag-medium">Success</span>
-        <span class="Tag-tag Tag-warning Tag-medium">Warning</span>
-        <span class="Tag-tag Tag-error Tag-medium">Error</span>
-      </div>
-    </div>
-    <div class="code-block">&lt;span class="Tag-tag Tag-primary Tag-medium"&gt;
-  Nova Feature
-&lt;/span&gt;</div>
-
-    <!-- Input -->
-    <h2>Input</h2>
-    <p>Campos de entrada de texto.</p>
-    <div class="component-demo">
-      <div style="max-width: 400px; display: flex; flex-direction: column; gap: 12px;">
-        <input type="text" class="Input-input Input-small" placeholder="Small input" />
-        <input type="text" class="Input-input Input-medium" placeholder="Medium input" />
-        <input type="text" class="Input-input Input-large" placeholder="Large input" />
-      </div>
-    </div>
-    <div class="code-block">&lt;input 
-  type="text" 
-  class="Input-input Input-medium" 
-  placeholder="Digite aqui..."
-/&gt;</div>
-
-    <!-- Avatar -->
-    <h2>Avatar</h2>
-    <p>Imagens de perfil do usuário.</p>
-    <div class="component-demo">
-      <div class="variant-row">
-        <div class="Avatar-avatar Avatar-size24" style="background: #dbeafe;"></div>
-        <div class="Avatar-avatar Avatar-size32" style="background: #dbeafe;"></div>
-        <div class="Avatar-avatar Avatar-size40" style="background: #dbeafe;"></div>
-        <div class="Avatar-avatar Avatar-size110" style="background: #dbeafe;"></div>
-      </div>
-    </div>
-    <div class="code-block">&lt;div class="Avatar-avatar Avatar-size40"&gt;
-  &lt;img src="avatar.jpg" alt="User" class="Avatar-image" /&gt;
-&lt;/div&gt;</div>
-
-    <hr style="margin: 48px 0; border: none; border-top: 2px solid #e2e8f0;">
-
-    <h2>📚 Recursos Adicionais</h2>
-    <ul>
-      <li><strong>README.md</strong> - Guia completo de uso</li>
-      <li><strong>templates/</strong> - Snippets HTML prontos para copiar</li>
-      <li><strong>tokens.json</strong> - Design tokens exportados</li>
-    </ul>
-
-    <div class="info-box">
-      <strong>🔄 Atualização:</strong> Este arquivo é gerado automaticamente. Para atualizar, rode <code>npm run build:artifacts</code> no projeto Next.js.
-    </div>
+    <hr>
+    <p>Consulte a pasta <code>jsp-templates/</code> para exemplos de integração com JSTL.</p>
   </div>
 </body>
 </html>

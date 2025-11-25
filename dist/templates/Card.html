@@ -1,9 +1,25 @@
-<!-- 
-  Component: Card
-  Usage: Copy the HTML below and adjust the classes.
-  Classes are namespaced: .Card-[variant]
--->
+<!-- Card Component -->
+<!-- Variants: default, secondary -->
+<!-- Padding: none, small, medium, large -->
+<!-- Border: default, subtle -->
 
-<div class="Card-root">
-  <!-- Content for Card -->
+<!-- Card with Medium Padding -->
+<div class="Card-card Card-default Card-padding-medium Card-border-default">
+  <div class="Card-content">
+    <h3>Título do Card</h3>
+    <p>Conteúdo do card aqui.</p>
+  </div>
+</div>
+
+<!-- Card with Header and Footer -->
+<div class="Card-card Card-default Card-padding-medium">
+  <div class="Card-header">
+    <h3>Header</h3>
+  </div>
+  <div class="Card-content">
+    <p>Conteúdo principal</p>
+  </div>
+  <div class="Card-footer">
+    <button class="Button-button Button-primary Button-small">Ação</button>
+  </div>
 </div>

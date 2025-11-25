@@ -1,9 +1,24 @@
-<!-- 
-  Component: Input
-  Usage: Copy the HTML below and adjust the classes.
-  Classes are namespaced: .Input-[variant]
--->
+<!-- Input Component -->
+<!-- Sizes: small, medium, large -->
+<!-- States: error (add Input-error for validation errors) -->
 
-<div class="Input-root">
-  <!-- Content for Input -->
-</div>
+<!-- Basic Input (Medium) -->
+<input 
+  type="text" 
+  class="Input-input Input-medium" 
+  placeholder="Digite seu nome..."
+/>
+
+<!-- Large Input -->
+<input 
+  type="email" 
+  class="Input-input Input-large" 
+  placeholder="seu@email.com"
+/>
+
+<!-- Input with Error -->
+<input 
+  type="text" 
+  class="Input-input Input-medium Input-error" 
+  placeholder="Campo obrigatório"
+/>

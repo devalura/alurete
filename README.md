@@ -6,7 +6,7 @@ Sistema de design da Alura para aplicações **Java/Spring/JSP**.
 
 ## 📑 Navegação
 
-- [👨‍🎨 Para Designers: Testando o Projeto Localmente (Windows)](#-para-designers-testando-o-projeto-localmente-windows)
+- [👨‍🎨 Para Designers: Testando o Projeto Localmente (Windows/Mac OS)](#-para-designers-testando-o-projeto-localmente-windowsmac-os)
 - [🛠️ Setup Inicial Recomendado para Designers](#-setup-inicial-recomendado-para-designers)
 - [🚀 Quick start for devs](#-quick-start)
 - [📋 Componentes disponíveis](#-componentes-disponiveis)
@@ -17,12 +17,13 @@ Sistema de design da Alura para aplicações **Java/Spring/JSP**.
 - [🔄 Atualizando](#-atualizando)
 
 
-## 👨‍🎨 Para Designers: Testando o Projeto Localmente (Windows)
+## 👨‍🎨 Para Designers: Testando o Projeto Localmente (Windows/Mac OS)
 
 Este guia é para você que trabalha com design e quer rodar o projeto na sua máquina para visualizar os componentes ao vivo, sem precisar ser desenvolvedor.
 
 ### **Passo 1: Instalar o Node.js**
 
+**Para Windows:**
 1. Acesse: [https://nodejs.org](https://nodejs.org)
 2. Baixe a versão **LTS** (recomendada)
 3. Execute o instalador e clique em "Next" até finalizar
@@ -32,9 +33,21 @@ Este guia é para você que trabalha com design e quer rodar o projeto na sua m�
    ```
    Deve aparecer algo como `v20.x.x`
 
+**Para Mac OS:**
+1. Acesse: [https://nodejs.org](https://nodejs.org)
+2. Baixe a versão **LTS** (recomendada) para macOS
+3. Execute o instalador .pkg e siga as instruções
+4. Para confirmar que instalou, abra o **Terminal** (Applications > Utilities > Terminal) e digite:
+   ```
+   node --version
+   ```
+   Deve aparecer algo como `v20.x.x`
+
 ### **Passo 2: Baixar o Projeto**
 
 **Opção A - Se você tem Git instalado:**
+
+**Para Windows:**
 1. Abra o Prompt de Comando
 2. Navegue até a pasta onde quer guardar o projeto (exemplo: `cd Desktop`)
 3. Clone o repositório:
@@ -43,15 +56,33 @@ Este guia é para você que trabalha com design e quer rodar o projeto na sua m�
    cd alurete
    ```
 
+**Para Mac OS:**
+1. Abra o Terminal (Applications > Utilities > Terminal)
+2. Navegue até a pasta onde quer guardar o projeto (exemplo: `cd Desktop`)
+3. Clone o repositório:
+   ```
+   git clone https://github.com/caelum/alurete.git
+   cd alurete
+   ```
+
 **Opção B - Sem Git:**
+
+**Para Windows:**
 1. Acesse: [https://github.com/caelum/alurete](https://github.com/caelum/alurete)
 2. Clique no botão verde **"Code"** → **"Download ZIP"**
 3. Extraia o arquivo ZIP em uma pasta de sua escolha
 4. Abra o Prompt de Comando e navegue até a pasta (exemplo: `cd Desktop\alurete`)
 
+**Para Mac OS:**
+1. Acesse: [https://github.com/caelum/alurete](https://github.com/caelum/alurete)
+2. Clique no botão verde **"Code"** → **"Download ZIP"**
+3. Extraia o arquivo ZIP em uma pasta de sua escolha (normalmente Downloads)
+4. Abra o Terminal e navegue até a pasta (exemplo: `cd Downloads/alurete`)
+
 ### **Passo 3: Instalar as Dependências**
 
-No Prompt de Comando, dentro da pasta do projeto, digite:
+**Para Windows/Mac OS:**
+No terminal (Prompt de Comando no Windows ou Terminal no Mac), dentro da pasta do projeto, digite:
 ```
 npm install
 ```
@@ -60,7 +91,8 @@ Aguarde alguns minutos (pode demorar). Você verá várias mensagens passando - 
 
 ### **Passo 4: Rodar o Projeto**
 
-Ainda no Prompt de Comando, digite:
+**Para Windows/Mac OS:**
+Ainda no terminal, digite:
 ```
 npm run dev
 ```
@@ -82,7 +114,7 @@ http://localhost:3000
 
 ### **Dicas Importantes:**
 
-- **Para parar o servidor:** Volte ao Prompt de Comando e pressione `Ctrl + C`
+- **Para parar o servidor:** Volte ao terminal e pressione `Ctrl + C` (funciona igual no Windows e Mac)
 - **Para rodar novamente:** Digite `npm run dev` de novo
 - Para que o VSCode e o Figma conversem, siga o tutorial abaixo.
 
@@ -117,7 +149,8 @@ O MCP é uma feature integrada do Figma Desktop que permite conectar ferramentas
 
 | Problema | Solução |
 |----------|---------|
-| "npm não é reconhecido" | Reinicie o computador após instalar o Node.js |
+| "npm não é reconhecido" (Windows) | Reinicie o computador após instalar o Node.js |
+| "npm não é reconhecido" (Mac) | Feche e reabra o Terminal após instalar o Node.js |
 | "Porta 3000 já em uso" | Feche outros programas que possam estar usando a porta 3000, ou mude para `npm run dev -- -p 3001` |
 | Alterações não aparecem | Salve o arquivo e a página atualiza sozinha. Se não funcionar, pressione `Ctrl + R` no navegador |
 

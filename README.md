@@ -2,9 +2,12 @@
 
 Sistema de design da Alura para aplicações **Java/Spring/JSP**.
 
+---
+
 ## 📑 Navegação
 
 - [👨‍🎨 Para Designers: Testando o Projeto Localmente (Windows)](#-para-designers-testando-o-projeto-localmente-windows)
+- [🛠️ Setup Inicial Recomendado para Designers](#-setup-inicial-recomendado-para-designers)
 - [🚀 Quick Start](#-quick-start)
 - [📋 Componentes Disponíveis](#-componentes-disponiveis)
 - [🎯 Integração com Spring MVC](#-integracao-com-spring-mvc)
@@ -81,7 +84,34 @@ http://localhost:3000
 
 - **Para parar o servidor:** Volte ao Prompt de Comando e pressione `Ctrl + C`
 - **Para rodar novamente:** Digite `npm run dev` de novo
+- Para que o VSCode e o Figma conversem, siga o tutorial abaixo.
 
+## 🛠️ Setup Inicial Recomendado para Designers
+
+Antes de começar, recomendamos preparar seu ambiente para facilitar o trabalho com o Design System:
+
+### 1. Instale o Visual Studio Code
+
+- Baixe em: [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- Instale normalmente ("Next" até o fim)
+- Abra a pasta do projeto pelo menu "Arquivo > Abrir Pasta"
+
+### 2. Habilite o GitHub Copilot
+
+- No VS Code, vá em "Extensões" (ícone de quadrados na lateral)
+- Busque por **GitHub Copilot** e clique em "Instalar"
+- Faça login com sua conta GitHub (obrigatório)
+
+### 3. Habilite o Model Context Protocol (MCP) no Figma
+
+O MCP é uma feature integrada do Figma Desktop que permite conectar ferramentas externas:
+
+1. Abra o **Figma Desktop** (não o navegador)
+2. Vá em **Menu > Actions > Enable desktop MCP Server**
+3. Copie a URL do toast que surgir. Algo como "http://127.0.0.1:3845/mcp"
+4. Agora [siga este tutorial](https://youtu.be/Cq-7lFMNESk?t=81) de como linkar o Figma MCP com o VSCode
+
+---
 
 ### **Problemas Comuns:**
 

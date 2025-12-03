@@ -8,12 +8,12 @@ Sistema de design da Alura para aplicações **Java/Spring/JSP**.
 
 - [👨‍🎨 Para Designers: Testando o Projeto Localmente (Windows)](#-para-designers-testando-o-projeto-localmente-windows)
 - [🛠️ Setup Inicial Recomendado para Designers](#-setup-inicial-recomendado-para-designers)
-- [🚀 Quick Start](#-quick-start)
-- [📋 Componentes Disponíveis](#-componentes-disponiveis)
+- [🚀 Quick start for devs](#-quick-start)
+- [📋 Componentes disponíveis](#-componentes-disponiveis)
 - [🎯 Integração com Spring MVC](#-integracao-com-spring-mvc)
-- [🗂️ Templates Prontos](#-templates-prontos)
+- [🗂️ Templates prontos](#-templates-prontos)
 - [🔧 Troubleshooting](#-troubleshooting)
-- [📖 Documentação Completa](#-documentacao-completa)
+- [📖 Documentação completa](#-documentacao-completa)
 - [🔄 Atualizando](#-atualizando)
 
 

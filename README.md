@@ -4,6 +4,85 @@ Sistema de design da Alura para aplicações **Java/Spring/JSP**.
 
 ---
 
+## 👨‍🎨 Para Designers: Testando o Projeto Localmente (Windows)
+
+Este guia é para você que trabalha com design e quer rodar o projeto na sua máquina para visualizar os componentes ao vivo, sem precisar ser desenvolvedor.
+
+### **Passo 1: Instalar o Node.js**
+
+1. Acesse: [https://nodejs.org](https://nodejs.org)
+2. Baixe a versão **LTS** (recomendada)
+3. Execute o instalador e clique em "Next" até finalizar
+4. Para confirmar que instalou, abra o **Prompt de Comando** (pesquise "cmd" no Windows) e digite:
+   ```
+   node --version
+   ```
+   Deve aparecer algo como `v20.x.x`
+
+### **Passo 2: Baixar o Projeto**
+
+**Opção A - Se você tem Git instalado:**
+1. Abra o Prompt de Comando
+2. Navegue até a pasta onde quer guardar o projeto (exemplo: `cd Desktop`)
+3. Clone o repositório:
+   ```
+   git clone https://github.com/caelum/alurete.git
+   cd alurete
+   ```
+
+**Opção B - Sem Git:**
+1. Acesse: [https://github.com/caelum/alurete](https://github.com/caelum/alurete)
+2. Clique no botão verde **"Code"** → **"Download ZIP"**
+3. Extraia o arquivo ZIP em uma pasta de sua escolha
+4. Abra o Prompt de Comando e navegue até a pasta (exemplo: `cd Desktop\alurete`)
+
+### **Passo 3: Instalar as Dependências**
+
+No Prompt de Comando, dentro da pasta do projeto, digite:
+```
+npm install
+```
+
+Aguarde alguns minutos (pode demorar). Você verá várias mensagens passando - é normal!
+
+### **Passo 4: Rodar o Projeto**
+
+Ainda no Prompt de Comando, digite:
+```
+npm run dev
+```
+
+Aguarde aparecer a mensagem:
+```
+✓ Ready in Xms
+○ Local: http://localhost:3000
+```
+
+### **Passo 5: Abrir no Navegador**
+
+Abra seu navegador (Chrome, Edge, Firefox...) e acesse:
+```
+http://localhost:3000
+```
+
+🎉 **Pronto!** Você verá a documentação viva do Design System com todos os componentes interativos.
+
+### **Dicas Importantes:**
+
+- **Para parar o servidor:** Volte ao Prompt de Comando e pressione `Ctrl + C`
+- **Para rodar novamente:** Digite `npm run dev` de novo
+
+
+### **Problemas Comuns:**
+
+| Problema | Solução |
+|----------|---------|
+| "npm não é reconhecido" | Reinicie o computador após instalar o Node.js |
+| "Porta 3000 já em uso" | Feche outros programas que possam estar usando a porta 3000, ou mude para `npm run dev -- -p 3001` |
+| Alterações não aparecem | Salve o arquivo e a página atualiza sozinha. Se não funcionar, pressione `Ctrl + R` no navegador |
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Gere os artifacts

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "build:artifacts": "node scripts/build-artifacts.js",
     "start": "next start",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "lucide-react": "^0.553.0",
-    "next": "^15.0.0",
+    "next": "^16.0.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
